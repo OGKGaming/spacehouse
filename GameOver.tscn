@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbftstxu1gpvf"]
+
+[ext_resource type="Texture2D" uid="uid://cpg13moboslei" path="res://fposter,small,wall_texture,product,750x1000.jpg" id="1_40baj"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Fposter,small,wallTexture,product,750x1000" type="Sprite2D" parent="."]
+position = Vector2(580.5, 330)
+scale = Vector2(2.09467, 1.518)
+texture = ExtResource("1_40baj")
