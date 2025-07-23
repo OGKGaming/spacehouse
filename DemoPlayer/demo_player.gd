@@ -5,6 +5,16 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var SPEED = 5.0
 @export var JUMP_VELOCITY = 4.5
 
+var last_footstep_time := 0.0
+const FOOTSTEP_INTERVAL := 0.4  # seconds between steps
+
+
+@export var footstep_sounds: Array[AudioStream] = []  # Assign sounds in inspector
+var is_walking := false
+@onready var footstep_timer: Timer = get_node("/root/DemoLevel/FootstepTimer")
+@onready var footstep_player: AudioStreamPlayer3D = $"../FootstepPlayer"
+
+
 @export var mouse_sensibility = 1200
 @export var ladder_height_subtract = 1
 
@@ -46,17 +56,39 @@ func walk_process(delta):
 			velocity.y = JUMP_VELOCITY
 			print("🦘 Jump pressed! Velocity: ", velocity.y)
 
+	# move this BEFORE using `direction`
 	var input_dir = Input.get_vector("moveLeft", "moveRight", "moveUp", "moveDown")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-		# placeholder: trigger walking sound here
-		# play_footstep()
+
+		if not is_walking:
+			is_walking = true
+			footstep_timer.start(0.5)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+		if is_walking:
+			is_walking = false
+			footstep_timer.stop()
+
+
+	_post_walk_effects() # 🔁 Check for horror events
+
+	if direction:
+		if not is_walking:
+			is_walking = true
+			footstep_timer.start()
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+		if is_walking:
+			is_walking = false
+			footstep_timer.stop()
 
 	move_and_slide()
 
@@ -89,10 +121,22 @@ func _input(event):
 
 		if camera.rotation.x <= min_camera_x or camera.rotation.x >= max_camera_x:
 			print("⚠️ Camera clamped at vertical limit.")
+			
+	if event is InputEventKey and event.pressed:
+		if event.keycode in [KEY_W, KEY_A, KEY_S, KEY_D]:
+			var now = Time.get_ticks_msec() / 1000.0
+			if now - last_footstep_time > FOOTSTEP_INTERVAL:
+				play_footstep_sound()
+				last_footstep_time = now
+
+
 
 func set_player_mode(mode: PLAYER_MODES):
 	current_mode = mode
 	print("🔁 Player mode changed to: ", mode)
+	if mode == PLAYER_MODES.LADDER:
+		_post_ladder_effects() # 👻 Horror cue for ladders
+
 
 func set_on_ladder(on_ladder, height, reference: Node3D):
 	if on_ladder:
@@ -112,3 +156,46 @@ func set_on_ladder(on_ladder, height, reference: Node3D):
 		set_player_mode(PLAYER_MODES.WALK)
 
 	ladder_height = height
+	
+	
+	# 🧪 Optional scary ambient triggers (e.g. after jumping or walking a lot)
+var step_counter := 0
+var horror_threshold := 25
+
+func maybe_trigger_horror():
+	step_counter += 1
+	if step_counter >= horror_threshold:
+		step_counter = 0
+		if Engine.has_singleton("GameEnhancer"):
+			var enhancer = Engine.get_singleton("GameEnhancer")
+			if enhancer.has_method("ambient_horror_event"):
+				enhancer.ambient_horror_event()
+
+# 🚶 Call horror checks after walking
+func _post_walk_effects():
+	step_counter += 1
+	if step_counter >= horror_threshold:
+		step_counter = 0
+		if Engine.has_singleton("GameEnhancer"):
+			var enhancer = Engine.get_singleton("GameEnhancer")
+			if enhancer.has_method("ambient_horror_event"):
+				enhancer.ambient_horror_event()
+
+# 🪜 Ladder transitions can trigger eerie sounds
+func _post_ladder_effects():
+	if Engine.has_singleton("GameEnhancer"):
+		var enhancer = Engine.get_singleton("GameEnhancer")
+		if enhancer.has_method("trigger_screen_glitch"):
+			enhancer.trigger_screen_glitch()
+
+func play_footstep_sound():
+	footstep_player.play()
+	print("👣 Footstep sound played")
+
+func _on_footstep_timer_timeout():
+	if footstep_sounds.size() > 0:
+		var sfx = footstep_sounds[randi() % footstep_sounds.size()]
+		footstep_player.stream = sfx
+		footstep_player.play()
+		
+		

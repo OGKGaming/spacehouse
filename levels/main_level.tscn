@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://ia4ouu4k3uqs"]
+[gd_scene load_steps=37 format=3 uid="uid://ia4ouu4k3uqs"]
 
 [ext_resource type="PackedScene" uid="uid://cjjitfxn14vk8" path="res://Interaction/Door/Door.tscn" id="2_i2gnf"]
 [ext_resource type="PackedScene" uid="uid://drhgphis4p5f4" path="res://Interaction/Furniture/furniture.tscn" id="3_v1ssk"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bewfv5qqvds0r" path="res://Interaction/Elevator/Elevator.tscn" id="11_56fax"]
 [ext_resource type="AudioStream" uid="uid://dj323cftpppt" path="res://Interaction/Ladder/hello-46355.mp3" id="12_t6wdf"]
 [ext_resource type="AudioStream" uid="uid://cxdnp58nqulkc" path="res://Interaction/Ladder/horror-background-atmosphere-156462.mp3" id="13_p6yen"]
+[ext_resource type="AudioStream" uid="uid://bg4wf0knnrqj0" path="res://DemoPlayer/breathing-160445.mp3" id="15_bv0m5"]
+[ext_resource type="AudioStream" uid="uid://b4nghxihxhhlm" path="res://DemoPlayer/st3-footstep-sfx-323056.mp3" id="15_ol4gt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj33o"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -249,5 +251,22 @@ volume_db = 53.333
 
 [node name="brmusic" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("13_p6yen")
-volume_db = 53.333
+volume_db = 22.563
+unit_size = 100.0
 autoplay = true
+max_distance = 4096.0
+
+[node name="breath" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("15_bv0m5")
+volume_db = 28.857
+autoplay = true
+parameters/looping = true
+
+[node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("15_ol4gt")
+attenuation_model = 2
+volume_db = 57.436
+unit_size = 1.0
+max_distance = 4096.0
+
+[node name="FootstepTimer" type="Timer" parent="."]

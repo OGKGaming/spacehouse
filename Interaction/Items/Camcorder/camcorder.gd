@@ -171,7 +171,7 @@ func _on_timer_timeout():
 	elapsed_time += 1
 	var elapsed_str = format_elapsed_time(elapsed_time)
 	rec_time_label.text = elapsed_str
-	print("⏱️ Recording time updated: ", elapsed_str)
+	#print("⏱️ Recording time updated: ", elapsed_str)
 	
 func _on_energy_drain_finished(anim_name: String):
 	if anim_name == "Decrease Energy":
