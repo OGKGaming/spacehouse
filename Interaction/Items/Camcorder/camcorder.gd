@@ -177,3 +177,9 @@ func _on_energy_drain_finished(anim_name: String):
 	if anim_name == "Decrease Energy":
 		print("⚠️ Energy depleted from animation. Checking for recharge...")
 		try_to_recharge()
+
+
+var bob_timer := 0.0
+var bob_speed := 8.0
+var bob_amount := 0.05
+@onready var camera = $PlayerController/Camera3D

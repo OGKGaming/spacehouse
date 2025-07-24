@@ -26,6 +26,12 @@ var ladder_height = 0
 @export var show_velocity_debug := false
 @export var allow_rotation := true
 
+var bob_timer := 0.0
+@export var bob_amount := 0.05
+@export var bob_speed := 10.0
+var original_camera_y := 0.0
+
+
 enum PLAYER_MODES {
 	WALK,
 	LADDER
@@ -34,8 +40,17 @@ var current_mode := PLAYER_MODES.WALK
 
 var tween
 
+
+func apply_camera_bob(delta):
+	if is_walking:
+		bob_timer += delta * bob_speed
+		camera.position.y = original_camera_y + sin(bob_timer) * bob_amount
+	else:
+		camera.position.y = lerp(camera.position.y, original_camera_y, 10 * delta)
+
 func _ready():
 	camera = controller.camera
+	original_camera_y = camera.position.y
 	print("🧍 Player ready. Mode: WALK")
 
 func _physics_process(delta):
@@ -47,6 +62,7 @@ func _physics_process(delta):
 			walk_process(delta)
 		PLAYER_MODES.LADDER:
 			ladder_process(delta)
+	apply_camera_bob(delta)
 
 func walk_process(delta):
 	if not is_on_floor():
