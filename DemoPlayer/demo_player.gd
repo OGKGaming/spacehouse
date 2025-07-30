@@ -215,3 +215,35 @@ func _on_footstep_timer_timeout():
 		footstep_player.play()
 		
 		
+
+
+# --- ADDED: Breathing and Heartbeat Horror System ---
+@onready var breathing_player: AudioStreamPlayer3D = $"../breath"
+@onready var heartbeat_player: AudioStreamPlayer3D = $"../AudioStreamPlayer3D"
+var calm_timer := 0.0
+var panic_level := 0.0  # 0 = calm, 1 = max panic
+var PANIC_DECAY := 0.1
+var PANIC_INCREMENT := 0.05
+var PANIC_THRESHOLD := 0.6
+
+func _process(delta):
+	_update_panic(delta)
+	_handle_audio_feedback()
+
+func _update_panic(delta):
+	if is_walking:
+		panic_level = clamp(panic_level + PANIC_INCREMENT * delta, 0, 1)
+	else:
+		panic_level = clamp(panic_level - PANIC_DECAY * delta, 0, 1)
+
+func _handle_audio_feedback():
+	if panic_level > 0.01:
+		if not breathing_player.playing:
+			breathing_player.play()
+		if not heartbeat_player.playing and panic_level > PANIC_THRESHOLD:
+			heartbeat_player.play()
+	else:
+		if breathing_player.playing:
+			breathing_player.stop()
+		if heartbeat_player.playing:
+			heartbeat_player.stop()

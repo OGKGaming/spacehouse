@@ -25,9 +25,11 @@ func _process(_delta):
 	if ray_cast.is_colliding():
 		if not interaction_label.visible and can_move_camera:
 			interaction_label.visible = true
+			play_label_popin()
 	else:
-		if  interaction_label.visible:
-			interaction_label.visible = false
+		if interaction_label.visible:
+			play_label_popout()
+
 			
 func _input(event):
 	if event.is_action_pressed("Interact") and ray_cast.is_colliding():
@@ -49,3 +51,26 @@ func _input(event):
 			can_move_camera = false
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 				
+
+# --- ADDED: Smooth scale pop-in effect for interaction label ---
+@onready var interaction_tween := create_tween()
+
+
+func play_label_popin():
+	if interaction_tween:
+		interaction_tween.kill()
+	interaction_tween = create_tween()
+	interaction_label.scale = Vector2(0.7, 0.7)
+	interaction_tween.tween_property(interaction_label, "scale", Vector2(1, 1), 0.2).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	
+func play_label_popout():
+	if interaction_tween:
+		interaction_tween.kill()
+	interaction_tween = create_tween()
+	interaction_tween.tween_property(interaction_label, "scale", Vector2(0.7, 0.7), 0.15).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	interaction_tween.tween_callback(Callable(self, "_hide_interaction_label"))
+	_hide_interaction_label()
+
+func _hide_interaction_label():
+	interaction_label.visible = false
+	

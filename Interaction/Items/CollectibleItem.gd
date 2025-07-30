@@ -21,3 +21,15 @@ func interact(_parameters = null):
 
 func on_collect():
 	print("✅ Collected:", item.item_name)
+# --- ADDED: Creative flavor reaction on collect ---
+
+	var reactions = {
+		"Power Cell": "⚡ Juice secured. Let's keep the lights on.",
+		"Keycard": "🔑 Access... maybe.",
+		"Old Coin": "🪙 Feels cursed. Probably is.",
+		"Bandaid": "🩹 It won't stop the bleeding, but it'll help.",
+		"": "📦 It's... something. Hopefully useful."
+	}
+
+	var msg = reactions.get(item.item_name, "📦 Picked up: " + item.item_name)
+	print(msg)

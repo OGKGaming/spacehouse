@@ -146,3 +146,22 @@ func _on_timer_timeout():
 	var elapsed_str = format_elapsed_time(elapsed_time)
 	rec_time_label.text = elapsed_str
 	
+# --- ADDED: UI low battery pulse warning ---
+var low_battery_flash_timer := 0.0
+var low_battery_flash_interval := 0.5
+var is_low_battery_warning := false
+
+func _process(delta):
+	if current_mode == CAM_MODES.POWER_OFF:
+		return
+
+	if Inventory.power_cells <= 1:
+		low_battery_flash_timer += delta
+		if low_battery_flash_timer >= low_battery_flash_interval:
+			low_battery_flash_timer = 0.0
+			is_low_battery_warning = !is_low_battery_warning
+			ui_container.modulate = Color(1, 0.5, 0.5, 1) if is_low_battery_warning else Color(1, 1, 1, 1)
+	else:
+		ui_container.modulate = Color(1, 1, 1, 1)
+		is_low_battery_warning = false
+		low_battery_flash_timer = 0.0

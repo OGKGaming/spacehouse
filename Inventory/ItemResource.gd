@@ -18,7 +18,7 @@ static func create_new_item(item: ItemResource):
 	var new_item = ItemResource.new()
 	new_item.item_name = item.item_name
 	new_item.texture = item.texture
-	new_item.mesh = chathelp.clone_mesh(item.mesh)
+	new_item.mesh = GameEnhancer.clone_mesh(item.mesh)
 	new_item.quantity = item.quantity
 	new_item.use_item_function = item.use_item_function
 	new_item.crafted_items = item.crafted_items

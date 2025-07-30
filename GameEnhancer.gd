@@ -212,3 +212,17 @@ func _play_sound(path: String):
 		snd.finished.connect(snd.queue_free)
 	else:
 		print("❗ Missing sound: ", path)
+
+
+# 🧠 Player whisper effect when recharge_count is close to full
+func maybe_whisper_hint():
+	if recharge_count == 1 :  # One cell away from radio
+		var whispers = [
+			"...just one more...",
+			"...you're close...",
+			"...can you hear it?",
+			"...they're listening too..."
+		]
+		var msg = whispers[randi() % whispers.size()]
+		show_popup(msg)
+		_play_sound("res://sounds/soft_whisper.ogg")  # Make sure you have this or swap path

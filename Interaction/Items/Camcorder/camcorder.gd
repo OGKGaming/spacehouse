@@ -183,3 +183,29 @@ var bob_timer := 0.0
 var bob_speed := 8.0
 var bob_amount := 0.05
 @onready var camera = $PlayerController/Camera3D
+
+# --- ADDED: Dynamic UI flicker effect when power is low ---
+var flicker_timer := 0.0
+var flicker_interval := 0.25
+var ui_flicker_active := false
+var low_power_threshold := 1
+
+func _process(delta):
+	if current_mode == CAM_MODES.POWER_OFF:
+		return
+
+	var power_cells = Inventory.get_item("Power Cell")
+	var quantity = power_cells.quantity if power_cells else 0
+
+	if quantity <= low_power_threshold:
+		ui_flicker_active = true
+	else:
+		ui_flicker_active = false
+		ui_container.modulate = Color(1, 1, 1, 1)  # reset to normal
+
+	if ui_flicker_active:
+		flicker_timer += delta
+		if flicker_timer >= flicker_interval:
+			flicker_timer = 0
+			var flicker_alpha = randf_range(0.4, 1.0)
+			ui_container.modulate = Color(1, 1, 1, flicker_alpha)
