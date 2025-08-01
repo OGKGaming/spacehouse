@@ -1,5 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://ia4ouu4k3uqs"]
+[gd_scene load_steps=32 format=3 uid="uid://ia4ouu4k3uqs"]
 
+[ext_resource type="Script" uid="uid://blqrjo76nxlwp" path="res://levels/main_level.gd" id="1_vx07q"]
+[ext_resource type="Script" uid="uid://b3u8w1ba8beq4" path="res://ChapterManager.gd" id="2_e7con"]
 [ext_resource type="PackedScene" uid="uid://drhgphis4p5f4" path="res://Interaction/Furniture/furniture.tscn" id="3_v1ssk"]
 [ext_resource type="PackedScene" uid="uid://kml8qcwn13ln" path="res://Interaction/Items/Key/Key.tscn" id="3_yr0xy"]
 [ext_resource type="PackedScene" uid="uid://brq6b1cfuv5q0" path="res://Interaction/Items/PowerCell/power_cell.tscn" id="4_57428"]
@@ -61,6 +63,11 @@ size = Vector3(2, 1, 2)
 data = PackedVector3Array(-1, 0.5, 1, 1, 0.5, 1, -1, -0.5, 1, 1, 0.5, 1, 1, -0.5, 1, -1, -0.5, 1, 1, 0.5, -1, -1, 0.5, -1, 1, -0.5, -1, -1, 0.5, -1, -1, -0.5, -1, 1, -0.5, -1, 1, 0.5, 1, 1, 0.5, -1, 1, -0.5, 1, 1, 0.5, -1, 1, -0.5, -1, 1, -0.5, 1, -1, 0.5, -1, -1, 0.5, 1, -1, -0.5, -1, -1, 0.5, 1, -1, -0.5, 1, -1, -0.5, -1, 1, 0.5, 1, -1, 0.5, 1, 1, 0.5, -1, -1, 0.5, 1, -1, 0.5, -1, 1, 0.5, -1, -1, -0.5, 1, 1, -0.5, 1, -1, -0.5, -1, 1, -0.5, 1, 1, -0.5, -1, -1, -0.5, -1)
 
 [node name="DemoLevel" type="Node3D"]
+script = ExtResource("1_vx07q")
+
+[node name="ChapterManager" type="Node" parent="."]
+script = ExtResource("2_e7con")
+metadata/_custom_type_script = "uid://b3u8w1ba8beq4"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 12.8824, 0)
@@ -71,7 +78,7 @@ sky_mode = 2
 environment = SubResource("Environment_sidit")
 
 [node name="DemoPlayer" parent="." instance=ExtResource("8_4gt88")]
-transform = Transform3D(0.666099, 0, 0, 0, 0.731991, 0, 0, 0, 0.570077, 0, 0, 3.65036)
+transform = Transform3D(0.666099, 0, 0, 0, 0.881735, 0, 0, 0, 0.570077, 0, 0.101519, 3.65036)
 
 [node name="Items" type="Node3D" parent="."]
 

@@ -24,6 +24,7 @@ func on_power_cell_collected():
 	print("✅ Power cell collected! Current count: %d" % power_cells)
 	show_popup("Power cell collected! (%d)" % power_cells)
 	try_to_recharge()
+	chathelp.maybe_whisper_hint()
 
 # Call this from PowerCell.use_item()
 func try_to_recharge():
@@ -36,6 +37,8 @@ func try_to_recharge():
 	
 	recharge_count += 1
 	print("🔋 Power cell inserted (%d/5)" % recharge_count)
+	chathelp.maybe_whisper_hint()
+
 	
 	# 💡 Simulate lights flickering
 	var lights = get_tree().get_nodes_in_group("flicker_lights")

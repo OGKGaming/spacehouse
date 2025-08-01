@@ -4,6 +4,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var controller = $PlayerController
 @export var SPEED = 5.0
 @export var JUMP_VELOCITY = 4.5
+var can_move_camera := true
 
 var last_footstep_time := 0.0
 const FOOTSTEP_INTERVAL := 0.4  # seconds between steps
@@ -213,6 +214,9 @@ func _on_footstep_timer_timeout():
 		var sfx = footstep_sounds[randi() % footstep_sounds.size()]
 		footstep_player.stream = sfx
 		footstep_player.play()
+		if step_counter >= horror_threshold:
+			Engine.get_singleton("GameEnhancer").panic_effect()
+
 		
 		
 
