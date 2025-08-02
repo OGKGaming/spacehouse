@@ -121,7 +121,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_x0e22")
 
 [node name="Ground3" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(0.590069, 0.0037219, 0.00107863, -0.433385, 0.00506624, -0.00206344, -0.0113966, 4.79424e-05, 0.134315, 13.6648, -3.11273, 0.403215)
+transform = Transform3D(0.590069, 0.0037219, 0.00107863, -0.433508, 0.00506639, -4.02043e-05, -0.00486783, -2.83688e-05, 0.134331, 13.6648, -3.1217, 0.403215)
 visible = false
 mesh = SubResource("BoxMesh_rc4ca")
 skeleton = NodePath("../..")
