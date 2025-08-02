@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ia4ouu4k3uqs"]
+[gd_scene load_steps=28 format=3 uid="uid://ia4ouu4k3uqs"]
 
 [ext_resource type="Script" uid="uid://blqrjo76nxlwp" path="res://levels/main_level.gd" id="1_vx07q"]
 [ext_resource type="Script" uid="uid://b3u8w1ba8beq4" path="res://ChapterManager.gd" id="2_e7con"]
@@ -32,13 +32,6 @@ fog_enabled = true
 fog_light_color = Color(0.467259, 0.0950814, 0.179076, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77eh0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_84sdh"]
-material = SubResource("StandardMaterial3D_77eh0")
-size = Vector3(60, 1, 60)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_t4m4v"]
-data = PackedVector3Array(-30, 0.5, 30, 30, 0.5, 30, -30, -0.5, 30, 30, 0.5, 30, 30, -0.5, 30, -30, -0.5, 30, 30, 0.5, -30, -30, 0.5, -30, 30, -0.5, -30, -30, 0.5, -30, -30, -0.5, -30, 30, -0.5, -30, 30, 0.5, 30, 30, 0.5, -30, 30, -0.5, 30, 30, 0.5, -30, 30, -0.5, -30, 30, -0.5, 30, -30, 0.5, -30, -30, 0.5, 30, -30, -0.5, -30, -30, 0.5, 30, -30, -0.5, 30, -30, -0.5, -30, 30, 0.5, 30, -30, 0.5, 30, 30, 0.5, -30, -30, 0.5, 30, -30, 0.5, -30, 30, 0.5, -30, -30, -0.5, 30, 30, -0.5, 30, -30, -0.5, -30, 30, -0.5, 30, 30, -0.5, -30, -30, -0.5, -30)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rc4ca"]
 material = SubResource("StandardMaterial3D_77eh0")
@@ -75,7 +68,7 @@ sky_mode = 2
 environment = SubResource("Environment_vx07q")
 
 [node name="DemoPlayer" parent="." instance=ExtResource("8_4gt88")]
-transform = Transform3D(0.666099, 0, 0, 0, 1.08717, 0, 0, 0, 0.570077, 0, 0.101519, 3.65036)
+transform = Transform3D(0.666099, 0, 0, 0, 0.825424, 0, 0, 0, 0.570077, 0, 0.101519, 3.65036)
 
 [node name="Items" type="Node3D" parent="."]
 
@@ -116,16 +109,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.41023, 0.720554, 2.0277)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7254, 0.146397, 0.498344)
 
 [node name="Enviroment" type="Node3D" parent="."]
-
-[node name="Ground" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(26.2472, 0, 0, 0, 1.46797, 0, 0, 0, 30.2675, 0, -1.73216, 0)
-mesh = SubResource("BoxMesh_84sdh")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_t4m4v")
 
 [node name="Ground2" type="MeshInstance3D" parent="Enviroment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.68112, 9.57292, 5.59985)
