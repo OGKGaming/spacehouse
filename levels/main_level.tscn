@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ia4ouu4k3uqs"]
+[gd_scene load_steps=30 format=3 uid="uid://ia4ouu4k3uqs"]
 
 [ext_resource type="Script" uid="uid://blqrjo76nxlwp" path="res://levels/main_level.gd" id="1_vx07q"]
 [ext_resource type="Script" uid="uid://b3u8w1ba8beq4" path="res://ChapterManager.gd" id="2_e7con"]
@@ -20,19 +20,16 @@
 [ext_resource type="PackedScene" uid="uid://c52grvp5s1nhh" path="res://collhouse.tscn" id="16_bv0m5"]
 [ext_resource type="AudioStream" uid="uid://d3im5fd4625wj" path="res://heartbeat-01-brvhrtz-225058.mp3" id="16_vy62f"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yj33o"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_7ot84"]
-sky_material = SubResource("ProceduralSkyMaterial_yj33o")
-
-[sub_resource type="Environment" id="Environment_sidit"]
-background_mode = 2
-sky = SubResource("Sky_7ot84")
+[sub_resource type="Environment" id="Environment_vx07q"]
+background_mode = 1
+background_color = Color(0.360784, 0, 0, 1)
+background_energy_multiplier = 4.65
+ambient_light_color = Color(0.144091, 6.69318e-08, 1.50409e-08, 1)
+ambient_light_energy = 5.86
 reflected_light_source = 2
-tonemap_mode = 2
-glow_enabled = true
+tonemap_mode = 3
+fog_enabled = true
+fog_light_color = Color(0.467259, 0.0950814, 0.179076, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77eh0"]
 
@@ -75,10 +72,10 @@ shadow_enabled = true
 sky_mode = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_sidit")
+environment = SubResource("Environment_vx07q")
 
 [node name="DemoPlayer" parent="." instance=ExtResource("8_4gt88")]
-transform = Transform3D(0.666099, 0, 0, 0, 0.881735, 0, 0, 0, 0.570077, 0, 0.101519, 3.65036)
+transform = Transform3D(0.666099, 0, 0, 0, 1.08717, 0, 0, 0, 0.570077, 0, 0.101519, 3.65036)
 
 [node name="Items" type="Node3D" parent="."]
 
@@ -148,6 +145,17 @@ skeleton = NodePath("../..")
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jdgad")
+
+[node name="Ground4" type="MeshInstance3D" parent="Enviroment"]
+transform = Transform3D(0.328683, 0, 0, 0, 0.439173, 0, 0, 0, 0.195347, 12.4602, -0.198634, -8.82411)
+visible = false
+mesh = SubResource("BoxMesh_rc4ca")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_jdgad")
 
 [node name="Walls" type="Node3D" parent="Enviroment"]

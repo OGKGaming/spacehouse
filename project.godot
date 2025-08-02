@@ -20,6 +20,10 @@ Inventory="*res://Inventory/InventorySingleton.gd"
 chathelp="*res://GameEnhancer.gd"
 chapman="*res://ChapterManager.gd"
 
+[display]
+
+window/size/mode=3
+
 [input]
 
 moveLeft={
@@ -75,3 +79,4 @@ ToggleInventory={
 [rendering]
 
 renderer/rendering_method="mobile"
+camera/depth_of_field/depth_of_field_bokeh_shape=0

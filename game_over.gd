@@ -1,16 +1,11 @@
-extends Node3D
+extends Node2D
 
 @onready var chapter_manager := $ChapterManager
-@onready var player := $DemoPlayer
 var pause_menu: CanvasLayer
 var is_paused := false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	await chapter_manager.advance()
-	chapter_manager._play_in_game_monologue(1)
-
-
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel"):
 		if is_paused:
@@ -20,13 +15,11 @@ func _unhandled_input(event):
 
 func _pause_game():
 	is_paused = true
-	player.can_move_camera = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_create_pause_menu()
 
 func _resume_game():
 	is_paused = false
-	player.can_move_camera = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	if pause_menu:
 		pause_menu.queue_free()

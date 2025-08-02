@@ -10,19 +10,19 @@ signal transition_complete(chapter_index: int)
 var current_chapter := -1
 
 var chapters := [
-	"CH1: No Instructions — Just Buttons",
-	"CH2: Something's Breathing in the Walls",
-	"CH3: Lights That Don’t Remember",
-	"CH4: Echoes in the Intercom",
-	"CH5: Hallways Rearranged",
-	"CH6: The Voice That Knows Your Name",
-	"CH7: Static Rooms, Shifting Doors",
-	"CH8: Don’t Recharge It Again",
-	"CH9: There’s Someone in the Power",
-	"CH10: Let Go of the Ship"
+	"This thing doesn’t come with instructions., Just buttons. Blinking. Ticking. Breathing...",
+	" Something's Breathing in the Walls",
+	" Lights That Don’t Remember",
+	" Echoes in the Intercom",
+	" Hallways Rearranged",
+	" The Voice That Knows Your Name",
+	" Static Rooms, Shifting Doors",
+	" Don’t Recharge It Again",
+	" There’s Someone in the Power",
+	" Let Go of the Ship"
 ]
 
-var chapter_images: Array[Texture2D] = [null, null, null, null, null, null, null, null, null, null]
+var chapter_images: Array[Texture2D] = [load("res://DemoPlayer/chapter_01_title.png"), null, null, null, null, null, null, null, null, null]
 var chapter_videos := [
 	"res://cutscenes/ch1.webm", "res://cutscenes/ch2.webm", "res://cutscenes/ch3.webm",
 	"res://cutscenes/ch4.webm", "res://cutscenes/ch5.webm", "res://cutscenes/ch6.webm",
@@ -53,7 +53,7 @@ var chapter_durations := [
 ]
 
 @export var fade_in_time := 1.5
-@export var title_hold_time := 2.0
+@export var title_hold_time := 5.0
 @export var crossfade_time := 0.8
 @export var fade_out_time := 1.2
 
@@ -92,7 +92,7 @@ func _build_ui_once():
 	_title_label = Label.new()
 	_title_label.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_title_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_title_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
 	_title_label.autowrap_mode = TextServer.AUTOWRAP_WORD
 	_title_label.add_theme_font_size_override("font_size", 48)
 	_title_label.visible = false
@@ -195,15 +195,31 @@ func _wait_for_video_end() -> void:
 		await get_tree().create_timer(_video.stream.get_length()).timeout
 	else:
 		await get_tree().create_timer(6.0).timeout
-
 func _play_in_game_monologue(ch_idx: int) -> void:
-	if ch_idx >= chapter_voice_paths.size(): return
-	var path = chapter_voice_paths[ch_idx]
-	if not ResourceLoader.exists(path): return
-	_voice_player.stream = load(path)
-	_voice_player.play()
-	if ch_idx < chapter_dialogs.size() and ch_idx < chapter_durations.size():
-		_show_subtitles_async(chapter_dialogs[ch_idx], chapter_durations[ch_idx])
+	if ch_idx >= chapter_dialogs.size() or ch_idx >= chapter_durations.size():
+		return
+
+	var lines = chapter_dialogs[ch_idx]
+	var durations = chapter_durations[ch_idx]
+
+	if lines.is_empty() or durations.is_empty():
+		return
+
+	call_deferred("_monologue_popup_sequence", lines, durations)
+
+func _monologue_popup_sequence(lines: Array[String], durations: Array[float]) -> void:
+	for i in lines.size():
+		var line = lines[i]
+		var d = 2.0
+		if i < durations.size():
+			d = durations[i]
+		if has_node("/root/GameEnhancer"):
+			var enhancer = get_node("/root/GameEnhancer")
+			if enhancer.has_method("show_popup"):
+				enhancer.show_popup(line)
+		await get_tree().create_timer(d).timeout
+
+
 
 func _show_subtitles_async(lines: Array[String], durations: Array[float]) -> void:
 	if lines.is_empty() or durations.is_empty(): return
@@ -219,7 +235,7 @@ func _subtitle_coroutine(lines: Array[String], durations: Array[float]) -> void:
 			d = durations[i]
 		await get_tree().create_timer(d).timeout
 	_subtitle_label.text = ""
-	_subtitle_label.visible = false
+	_subtitle_label.visible = true
 
 func _pause_player(freeze: bool) -> void:
 	if has_node("/root/DemoLevel/Player"):
