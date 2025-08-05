@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ia4ouu4k3uqs"]
+[gd_scene load_steps=39 format=3 uid="uid://ia4ouu4k3uqs"]
 
 [ext_resource type="Script" uid="uid://blqrjo76nxlwp" path="res://levels/main_level.gd" id="1_vx07q"]
 [ext_resource type="Script" uid="uid://b3u8w1ba8beq4" path="res://ChapterManager.gd" id="2_e7con"]
@@ -12,9 +12,13 @@
 [ext_resource type="Resource" uid="uid://d3fxd6yakgssl" path="res://Interaction/Items/CraftSystem/ItemC.tres" id="8_eqjoo"]
 [ext_resource type="PackedScene" uid="uid://dxscyy3vgif0i" path="res://Interaction/Ladder/Ladder.tscn" id="9_choik"]
 [ext_resource type="PackedScene" uid="uid://8dhe50hq6tpg" path="res://Interaction/Lever/Lever.tscn" id="10_gfxh2"]
+[ext_resource type="Texture2D" uid="uid://yxo6fxuxe8mn" path="res://DemoPlayer/360_F_313818309_sI2LhUeMYPtLzskyGcfWsHpvHxSjBtlt.jpg" id="11_1g47i"]
 [ext_resource type="PackedScene" uid="uid://bewfv5qqvds0r" path="res://Interaction/Elevator/Elevator.tscn" id="11_56fax"]
+[ext_resource type="Shader" uid="uid://dse738aicqevy" path="res://levels/main_level.gdshader" id="11_e7con"]
 [ext_resource type="AudioStream" uid="uid://dj323cftpppt" path="res://Interaction/Ladder/hello-46355.mp3" id="12_t6wdf"]
+[ext_resource type="Script" uid="uid://c4ik3vcergdr3" path="res://levels/ground_7.gd" id="13_gdgmy"]
 [ext_resource type="AudioStream" uid="uid://cxdnp58nqulkc" path="res://Interaction/Ladder/horror-background-atmosphere-156462.mp3" id="13_p6yen"]
+[ext_resource type="AudioStream" uid="uid://c5erse0fndj35" path="res://DemoPlayer/mixkit-terror-radio-frequency-2566.wav" id="14_n00sm"]
 [ext_resource type="AudioStream" uid="uid://bg4wf0knnrqj0" path="res://DemoPlayer/breathing-160445.mp3" id="15_bv0m5"]
 [ext_resource type="AudioStream" uid="uid://b4nghxihxhhlm" path="res://DemoPlayer/st3-footstep-sfx-323056.mp3" id="15_ol4gt"]
 [ext_resource type="PackedScene" uid="uid://c52grvp5s1nhh" path="res://collhouse.tscn" id="16_bv0m5"]
@@ -31,6 +35,9 @@ tonemap_mode = 3
 fog_enabled = true
 fog_light_color = Color(0.467259, 0.0950814, 0.179076, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyy41"]
+albedo_texture = ExtResource("11_1g47i")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77eh0"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_rc4ca"]
@@ -39,6 +46,25 @@ size = Vector3(10, 1, 10)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x0e22"]
 data = PackedVector3Array(-5, 0.5, 5, 5, 0.5, 5, -5, -0.5, 5, 5, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 5, 0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, 5, 0.5, 5, 5, 0.5, -5, 5, -0.5, 5, 5, 0.5, -5, 5, -0.5, -5, 5, -0.5, 5, -5, 0.5, -5, -5, 0.5, 5, -5, -0.5, -5, -5, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, 5, 0.5, 5, -5, 0.5, 5, 5, 0.5, -5, -5, 0.5, 5, -5, 0.5, -5, 5, 0.5, -5, -5, -0.5, 5, 5, -0.5, 5, -5, -0.5, -5, 5, -0.5, 5, 5, -0.5, -5, -5, -0.5, -5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gdgmy"]
+albedo_texture = ExtResource("11_1g47i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n00sm"]
+albedo_texture = ExtResource("11_1g47i")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ss25c"]
+albedo_texture = ExtResource("11_1g47i")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1g47i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uyy41"]
+render_priority = 0
+next_pass = SubResource("CanvasItemMaterial_1g47i")
+shader = ExtResource("11_e7con")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pc7vm"]
+albedo_texture = ExtResource("11_1g47i")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jdgad"]
 data = PackedVector3Array(-5, 0.5, 5, 5, 0.5, 5, -5, -0.5, 5, 5, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 5, 0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, 5, 0.5, 5, 5, 0.5, -5, 5, -0.5, 5, 5, 0.5, -5, 5, -0.5, -5, 5, -0.5, 5, -5, 0.5, -5, -5, 0.5, 5, -5, -0.5, -5, -5, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, 5, 0.5, 5, -5, 0.5, 5, 5, 0.5, -5, -5, 0.5, 5, -5, 0.5, -5, 5, 0.5, -5, -5, -0.5, 5, 5, -0.5, 5, -5, -0.5, -5, 5, -0.5, 5, 5, -0.5, -5, -5, -0.5, -5)
@@ -111,7 +137,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7254, 0.146397, 0.498344)
 [node name="Enviroment" type="Node3D" parent="."]
 
 [node name="Ground2" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.68112, 9.57292, 5.59985)
+transform = Transform3D(0.262151, 0.881451, 0, -9.7573, 0.0236821, 0, 0, 0, 7.69124, 26.9577, 3.33862, 1.56729)
+material_override = SubResource("StandardMaterial3D_uyy41")
+gi_lightmap_texel_scale = 1.084
 mesh = SubResource("BoxMesh_rc4ca")
 skeleton = NodePath("../..")
 
@@ -120,20 +148,69 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_x0e22")
 
+[node name="Ground6" type="MeshInstance3D" parent="Enviroment"]
+transform = Transform3D(0.0216988, 0.0142728, 7.62695, -9.95684, 0.0233307, 0.0133201, -0.26429, -0.877787, 0.124368, 8.85621, -4.09283, 11.8792)
+material_override = SubResource("StandardMaterial3D_gdgmy")
+gi_lightmap_texel_scale = 1.084
+mesh = SubResource("BoxMesh_rc4ca")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground6"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground6/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_x0e22")
+
+[node name="Ground8" type="MeshInstance3D" parent="Enviroment"]
+transform = Transform3D(0.0216988, 0.0142728, 7.62695, 0.223283, -0.877877, 0.123567, 9.95784, 0.0196534, -0.0193903, 9.53013, 24.9517, 12.1487)
+material_override = SubResource("StandardMaterial3D_n00sm")
+gi_lightmap_texel_scale = 1.084
+mesh = SubResource("BoxMesh_rc4ca")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground8"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground8/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_x0e22")
+
+[node name="Ground7" type="MeshInstance3D" parent="Enviroment"]
+transform = Transform3D(0.00310909, 0.0114573, 7.67347, -8.97226, 0.0238668, 3.46993e-12, -0.241039, -0.888253, 0.0989774, 8.85621, 3.33862, -12.8058)
+material_override = SubResource("StandardMaterial3D_ss25c")
+gi_lightmap_texel_scale = 1.084
+mesh = SubResource("BoxMesh_rc4ca")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_uyy41")
+script = ExtResource("13_gdgmy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground7"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground7/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_x0e22")
+
+[node name="Ground5" type="MeshInstance3D" parent="Enviroment"]
+transform = Transform3D(0.298212, 0.863728, 0, -11.0995, 0.0232059, 0, 0, 0, 7.67437, -14.2481, 3.14747, 1.56729)
+material_override = SubResource("StandardMaterial3D_pc7vm")
+gi_lightmap_texel_scale = 1.084
+mesh = SubResource("BoxMesh_rc4ca")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground5/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_x0e22")
+
 [node name="Ground3" type="MeshInstance3D" parent="Enviroment"]
 transform = Transform3D(0.590069, 0.0037219, 0.00107863, -0.433508, 0.00506639, -4.02043e-05, -0.00486783, -2.83688e-05, 0.134331, 13.6648, -3.1217, 0.403215)
-visible = false
 mesh = SubResource("BoxMesh_rc4ca")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground3/StaticBody3D"]
+transform = Transform3D(1, -4.03901e-10, -1.16415e-10, -6.14673e-08, 1, 7.45058e-09, 0, 0, 1, 0.218987, -84.5533, 4.42077)
 shape = SubResource("ConcavePolygonShape3D_jdgad")
 
 [node name="Ground4" type="MeshInstance3D" parent="Enviroment"]
 transform = Transform3D(0.328683, 0, 0, 0, 0.439173, 0, 0, 0, 0.195347, 12.4602, -0.198634, -8.82411)
-visible = false
 mesh = SubResource("BoxMesh_rc4ca")
 skeleton = NodePath("../..")
 
@@ -188,7 +265,7 @@ volume_db = 53.333
 
 [node name="brmusic" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("13_p6yen")
-volume_db = -51.958
+volume_db = -40.106
 unit_size = 100.0
 autoplay = true
 max_distance = 4096.0
@@ -211,6 +288,13 @@ max_distance = 4096.0
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.798, -0.604, 126.99)
 stream = ExtResource("16_vy62f")
+volume_db = -22.519
+
+[node name="scarysound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, -2.9556e-11, -1.65034e-19, 2.9556e-11, 1, 1.8585e-09, 0, -1.8585e-09, 1, 9.53674e-07, 7.15256e-07, -9.53674e-07)
+stream = ExtResource("14_n00sm")
+volume_db = -20.148
+autoplay = true
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("16_bv0m5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.798, -0.604, 126.99)
