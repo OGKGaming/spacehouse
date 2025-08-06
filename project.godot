@@ -13,6 +13,8 @@ config_version=5
 config/name="Horror FPS Template"
 run/main_scene="res://levels/main_level.tscn"
 config/features=PackedStringArray("4.4")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://bmiwhgjq0cns1"
 
 [autoload]
 

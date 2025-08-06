@@ -252,7 +252,7 @@ text = "Interaction Info"
 
 [node name="InteractionAnimPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_egefk")
+&"": SubResource("AnimationLibrary_egefk")
 }
 speed_scale = 0.2
 

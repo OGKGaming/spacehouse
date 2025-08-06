@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+@onready var eaten_sound: AudioStreamPlayer3D = $"../AudioStreamPlayer3D2"  # Add an AudioStreamPlayer3D node
+
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var controller = $PlayerController
 @export var SPEED = 5.0
@@ -14,6 +17,7 @@ const FOOTSTEP_INTERVAL := 0.4  # seconds between steps
 var is_walking := false
 @onready var footstep_timer: Timer = get_node("/root/DemoLevel/FootstepTimer")
 @onready var footstep_player: AudioStreamPlayer3D = $"../FootstepPlayer"
+
 
 
 @export var mouse_sensibility = 1200
@@ -31,6 +35,11 @@ var bob_timer := 0.0
 @export var bob_amount := 0.05
 @export var bob_speed := 10.0
 var original_camera_y := 0.0
+
+var stuck_timer := 0.0
+const STUCK_THRESHOLD := 1  # Time in seconds before sound triggers
+const STUCK_SPEED := 0.1      # Max speed to be considered "stuck"
+
 
 
 enum PLAYER_MODES {
@@ -53,6 +62,7 @@ func _ready():
 	camera = controller.camera
 	original_camera_y = camera.position.y
 	print("🧍 Player ready. Mode: WALK")
+	
 
 func _physics_process(delta):
 	if show_velocity_debug:
@@ -64,6 +74,29 @@ func _physics_process(delta):
 		PLAYER_MODES.LADDER:
 			ladder_process(delta)
 	apply_camera_bob(delta)
+	# -- STUCK DETECTION DEBUG --
+	var input_pressed := Input.is_action_pressed("moveLeft") \
+		or Input.is_action_pressed("moveRight") \
+		or Input.is_action_pressed("moveUp") \
+		or Input.is_action_pressed("moveDown")
+
+	var is_moving := velocity.length() > 0.05
+
+	if input_pressed and not is_moving:
+		stuck_timer += delta
+		print("⛔ STUCK: ", stuck_timer)
+		eaten_sound.play()
+		print("🎧 Playing 'eaten' sound")
+		
+	else:
+		stuck_timer = 0.0
+
+	if stuck_timer > STUCK_THRESHOLD:
+		if not eaten_sound.playing:
+			print("🎧 Playing 'eaten' sound")
+			eaten_sound.play()
+
+
 
 func walk_process(delta):
 	if not is_on_floor():
@@ -207,7 +240,7 @@ func _post_ladder_effects():
 
 func play_footstep_sound():
 	footstep_player.play()
-	print("👣 Footstep sound played")
+	#wprint("👣 Footstep sound played")
 
 func _on_footstep_timer_timeout():
 	if footstep_sounds.size() > 0:

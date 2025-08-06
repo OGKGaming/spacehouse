@@ -15,14 +15,14 @@
 [ext_resource type="Texture2D" uid="uid://yxo6fxuxe8mn" path="res://DemoPlayer/360_F_313818309_sI2LhUeMYPtLzskyGcfWsHpvHxSjBtlt.jpg" id="11_1g47i"]
 [ext_resource type="PackedScene" uid="uid://bewfv5qqvds0r" path="res://Interaction/Elevator/Elevator.tscn" id="11_56fax"]
 [ext_resource type="Shader" uid="uid://dse738aicqevy" path="res://levels/main_level.gdshader" id="11_e7con"]
-[ext_resource type="AudioStream" uid="uid://dj323cftpppt" path="res://Interaction/Ladder/hello-46355.mp3" id="12_t6wdf"]
-[ext_resource type="Script" uid="uid://c4ik3vcergdr3" path="res://levels/ground_7.gd" id="13_gdgmy"]
+[ext_resource type="AudioStream" uid="uid://dj323cftpppt" path="res://DemoPlayer/hello-46355.mp3" id="12_t6wdf"]
 [ext_resource type="AudioStream" uid="uid://cxdnp58nqulkc" path="res://Interaction/Ladder/horror-background-atmosphere-156462.mp3" id="13_p6yen"]
 [ext_resource type="AudioStream" uid="uid://c5erse0fndj35" path="res://DemoPlayer/mixkit-terror-radio-frequency-2566.wav" id="14_n00sm"]
 [ext_resource type="AudioStream" uid="uid://bg4wf0knnrqj0" path="res://DemoPlayer/breathing-160445.mp3" id="15_bv0m5"]
 [ext_resource type="AudioStream" uid="uid://b4nghxihxhhlm" path="res://DemoPlayer/st3-footstep-sfx-323056.mp3" id="15_ol4gt"]
 [ext_resource type="PackedScene" uid="uid://c52grvp5s1nhh" path="res://collhouse.tscn" id="16_bv0m5"]
 [ext_resource type="AudioStream" uid="uid://d3im5fd4625wj" path="res://heartbeat-01-brvhrtz-225058.mp3" id="16_vy62f"]
+[ext_resource type="AudioStream" uid="uid://byvlrupcf10tw" path="res://DemoPlayer/mixkit-angry-dragon-growl-309.wav" id="21_gdgmy"]
 
 [sub_resource type="Environment" id="Environment_vx07q"]
 background_mode = 1
@@ -179,7 +179,6 @@ gi_lightmap_texel_scale = 1.084
 mesh = SubResource("BoxMesh_rc4ca")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_uyy41")
-script = ExtResource("13_gdgmy")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground7"]
 
@@ -289,6 +288,11 @@ max_distance = 4096.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.798, -0.604, 126.99)
 stream = ExtResource("16_vy62f")
 volume_db = -22.519
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.798, -0.604, 126.99)
+stream = ExtResource("21_gdgmy")
+volume_db = 47.225
 
 [node name="scarysound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, -2.9556e-11, -1.65034e-19, 2.9556e-11, 1, 1.8585e-09, 0, -1.8585e-09, 1, 9.53674e-07, 7.15256e-07, -9.53674e-07)
