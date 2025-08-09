@@ -1,6 +1,7 @@
 extends Camera3D
 
 @onready var light : SpotLight3D = $SpotLight3D
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var rec_animation: AnimationPlayer = $RecordingIconAnimation
 @onready var batteries_label :Label = $UIContainer/EnergyContainer/FlowContainer/BatteriesLabel

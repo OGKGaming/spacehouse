@@ -14,7 +14,7 @@ vec3 get_noise_texture(vec4 screen, vec2 uv) {
     float x = (uv.x + 4.0 ) * (uv.y + 4.0 ) * (TIME * 10.0);
 	// Add grain to Screen
 	screen = screen+vec4(mod((mod(x, 13.0) ) * (mod(x, 123.0) ), 0.01)-0.005) * strength;
-    
+
     screen = 1.0 - screen;
 	return screen.rgb;
 }
@@ -25,12 +25,12 @@ void vertex() {
 
 void fragment() {
 	vec2 uv = SCREEN_UV;
-	
+
 	vec4 screen_texture = texture(SCREEN_SAMPLER,uv);
 	vec3 screen_color = screen_texture.rgb;
 	vec3 color = NIGHT_VISION_COLOR;
 
-	
+
 	if(ENABLE_NOISE){
 	//	vec3 noise_color = get_noise_texture(screen_texture, uv);
 	//	screen_color *= noise_color;
@@ -38,7 +38,7 @@ void fragment() {
 	if(ENABLE_NIGHT_VISION){
 		screen_color *= color;
 	}
-	
+
 	ALBEDO = screen_color;
 }
 

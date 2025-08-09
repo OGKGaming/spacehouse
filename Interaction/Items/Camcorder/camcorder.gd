@@ -10,12 +10,22 @@ extends Camera3D
 @onready var zoom_label: Label = $UIContainer/RecordingContainer/ZoomLabel
 @onready var night_vision_mesh: MeshInstance3D = $NightVisionMesh
 
+
+@onready var camera = $PlayerController/Camera3D
+
+# --- ADDED: Dynamic UI flicker effect when power is low ---
+var flicker_timer := 0.0
+var flicker_interval := 0.25
+var ui_flicker_active := false
+var low_power_threshold := 1
+var bob_timer := 0.0
+var bob_speed := 8.0
+var bob_amount := 0.05
 var elapsed_time = 0
 var material: Material
 
 @export var normal_speed = 1
 @export var reduced_speed = .3
-
 @export var min_fov = 1
 @export var max_fov = 75
 @export var zoom_sensibiity = 1
@@ -179,16 +189,7 @@ func _on_energy_drain_finished(anim_name: String):
 		try_to_recharge()
 
 
-var bob_timer := 0.0
-var bob_speed := 8.0
-var bob_amount := 0.05
-@onready var camera = $PlayerController/Camera3D
 
-# --- ADDED: Dynamic UI flicker effect when power is low ---
-var flicker_timer := 0.0
-var flicker_interval := 0.25
-var ui_flicker_active := false
-var low_power_threshold := 1
 
 func _process(delta):
 	if current_mode == CAM_MODES.POWER_OFF:

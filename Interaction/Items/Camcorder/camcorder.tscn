@@ -1,8 +1,14 @@
-[gd_scene load_steps=16 format=4 uid="uid://btmhluxvgkqaj"]
+[gd_scene load_steps=17 format=4 uid="uid://btmhluxvgkqaj"]
 
 [ext_resource type="Script" uid="uid://2c5vxa151pgq" path="res://Interaction/Items/Camcorder/camcorder.gd" id="1_7ygv8"]
+[ext_resource type="Script" uid="uid://cjmlb52hw7hq5" path="res://Interaction/Items/Camcorder/progress_bar.gd" id="2_cbqwt"]
 [ext_resource type="Texture2D" uid="uid://xc3sucduehtt" path="res://Interaction/Items/Camcorder/rec_icon_white.png" id="3_3wdql"]
 [ext_resource type="Shader" uid="uid://cen815gq1vkm3" path="res://Interaction/Items/Camcorder/camcorder_shader.gdshader" id="3_o1tid"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak27c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1t8y7"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cp5p2"]
 resource_name = "Material.001"
@@ -149,11 +155,6 @@ _data = {
 &"Rec Icon Animation": SubResource("Animation_lwrtv")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ak27c"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1t8y7"]
-bg_color = Color(1, 1, 1, 1)
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dbivf"]
 render_priority = 0
 shader = ExtResource("3_o1tid")
@@ -171,8 +172,28 @@ size = Vector2(2, 2)
 current = true
 script = ExtResource("1_7ygv8")
 
+[node name="FlowContainer2" type="FlowContainer" parent="."]
+offset_left = 765.0
+offset_top = 110.0
+offset_right = 1897.0
+offset_bottom = 728.0
+alignment = 2
+
+[node name="BatteriesLabel" type="Label" parent="FlowContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "0/0"
+
+[node name="ProgressBar" type="ProgressBar" parent="FlowContainer2"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ak27c")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1t8y7")
+value = 100.0
+show_percentage = false
+script = ExtResource("2_cbqwt")
+
 [node name="Cylinder" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("ArrayMesh_yx811")
 skeleton = NodePath("")
 
@@ -229,6 +250,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_ak27c")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1t8y7")
 value = 100.0
 show_percentage = false
+script = ExtResource("2_cbqwt")
 
 [node name="RecordingContainer" type="MarginContainer" parent="UIContainer"]
 layout_mode = 1

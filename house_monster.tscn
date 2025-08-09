@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqwa1ef6g3xfk"]
+
+[ext_resource type="Script" uid="uid://bcy4he83qxc8u" path="res://house_monster.gd" id="1_ssnib"]
+[ext_resource type="PackedScene" uid="uid://cb6dp2chwrtr3" path="res://model_walk.tscn" id="2_8hgle"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3tlee"]
+
+[node name="HouseMonster" type="CharacterBody3D"]
+script = ExtResource("1_ssnib")
+
+[node name="model_walk" parent="." instance=ExtResource("2_8hgle")]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(44.7288, 0, 0, 0, 36.698, 0, 0, 0, 45.9338, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_3tlee")
+debug_color = Color(0.698407, 0.441892, 0.587143, 0.42)

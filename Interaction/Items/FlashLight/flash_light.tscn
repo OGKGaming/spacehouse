@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://6ls7715xqknl"]
+[gd_scene load_steps=4 format=3 uid="uid://6ls7715xqknl"]
 
 [ext_resource type="PackedScene" uid="uid://bip0t11lxgv8w" path="res://Interaction/Items/FlashLight/FlashLight.blend" id="1_d3b12"]
-[ext_resource type="Script" uid="uid://bgo54bikbusd" path="res://Interaction/Items/FlashLight/flash_light.gd" id="2_7bt4i"]
 
 [sub_resource type="Animation" id="Animation_ahpih"]
 resource_name = "Decrease Energy"
@@ -35,7 +34,6 @@ _data = {
 }
 
 [node name="FlashLight" instance=ExtResource("1_d3b12")]
-script = ExtResource("2_7bt4i")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.167411, 0)
@@ -44,5 +42,5 @@ spot_range = 15.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 libraries = {
-"": SubResource("AnimationLibrary_0gfxp")
+&"": SubResource("AnimationLibrary_0gfxp")
 }
