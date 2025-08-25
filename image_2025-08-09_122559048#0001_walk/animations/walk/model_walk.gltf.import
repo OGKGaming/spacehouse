@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/model_walk.gltf-0bf5ba32b1bb82fcf6cfd68b6e125
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="CharacterBody3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
