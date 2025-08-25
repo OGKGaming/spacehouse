@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://ia4ouu4k3uqs"]
+[gd_scene load_steps=40 format=3 uid="uid://ia4ouu4k3uqs"]
 
 [ext_resource type="Script" uid="uid://blqrjo76nxlwp" path="res://levels/main_level.gd" id="1_vx07q"]
 [ext_resource type="Script" uid="uid://b3u8w1ba8beq4" path="res://ChapterManager.gd" id="2_e7con"]
@@ -24,7 +24,6 @@
 [ext_resource type="AudioStream" uid="uid://d3im5fd4625wj" path="res://heartbeat-01-brvhrtz-225058.mp3" id="16_vy62f"]
 [ext_resource type="AudioStream" uid="uid://byvlrupcf10tw" path="res://DemoPlayer/mixkit-angry-dragon-growl-309.wav" id="21_gdgmy"]
 [ext_resource type="PackedScene" uid="uid://cb6dp2chwrtr3" path="res://model_walk.tscn" id="24_n00sm"]
-[ext_resource type="PackedScene" uid="uid://dqwa1ef6g3xfk" path="res://house_monster.tscn" id="25_ss25c"]
 
 [sub_resource type="Environment" id="Environment_vx07q"]
 background_mode = 1
@@ -139,7 +138,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7254, 0.146397, 0.498344)
 [node name="Enviroment" type="Node3D" parent="."]
 
 [node name="Ground2" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(0.262151, 0.881451, 0, -9.7573, 0.0236821, 0, 0, 0, 7.69124, 26.9577, 3.33862, 1.56729)
+transform = Transform3D(0.262151, 0.881451, 0, -9.7573, 0.0236821, 0, 0, 0, 7.69124, 49.9511, 3.33862, 1.56729)
 material_override = SubResource("StandardMaterial3D_uyy41")
 gi_lightmap_texel_scale = 1.084
 mesh = SubResource("BoxMesh_rc4ca")
@@ -151,7 +150,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_x0e22")
 
 [node name="Ground6" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(0.0216988, 0.0142728, 7.62695, -9.95684, 0.0233307, 0.0133201, -0.26429, -0.877787, 0.124368, 8.85621, -4.09283, 11.8792)
+transform = Transform3D(0.0216988, 0.0142728, 7.62695, -9.95684, 0.0233307, 0.0133201, -0.26429, -0.877787, 0.124368, 8.85621, -4.09283, 24.0024)
 material_override = SubResource("StandardMaterial3D_gdgmy")
 gi_lightmap_texel_scale = 1.084
 mesh = SubResource("BoxMesh_rc4ca")
@@ -175,7 +174,7 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_x0e22")
 
 [node name="Ground7" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(0.00310909, 0.0114573, 7.67347, -8.97226, 0.0238668, 3.46993e-12, -0.241039, -0.888253, 0.0989774, 8.85621, 3.33862, -12.8058)
+transform = Transform3D(0.00310909, 0.0114573, 7.67347, -8.97226, 0.0238668, 3.46993e-12, -0.241039, -0.888253, 0.0989774, 9.54134, 4.17776, -22.0967)
 material_override = SubResource("StandardMaterial3D_ss25c")
 gi_lightmap_texel_scale = 1.084
 mesh = SubResource("BoxMesh_rc4ca")
@@ -250,10 +249,12 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.4365
 
 [node name="Lever" parent="." node_paths=PackedStringArray("object") instance=ExtResource("10_gfxh2")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.28415, -1, -5.77361)
+visible = false
 object = NodePath("../Elevator")
 
 [node name="Lever2" parent="." node_paths=PackedStringArray("object") instance=ExtResource("10_gfxh2")]
 transform = Transform3D(-0.0930275, 0, -1.99784, 0, 2, 0, 1.99784, 0, -0.0930275, 9.38331, 3.92089, -5.77361)
+visible = false
 start_mode_activated = true
 object = NodePath("../Elevator")
 
@@ -307,6 +308,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.798, -0.604, 126.99)
 
 [node name="model_walk" parent="." instance=ExtResource("24_n00sm")]
 transform = Transform3D(0.00630981, 0, -0.021757, 0, 0.0226585, 0, 0.0291594, 0, 0.00470801, 5.01919, 0.15155, 3.72528)
-
-[node name="HouseMonster" parent="." instance=ExtResource("25_ss25c")]
-transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 3.33982, 0, 3.92277)

@@ -9,6 +9,15 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @export var JUMP_VELOCITY = 4.5
 var can_move_camera := true
 
+# === Screen bend (barrel warp) – runtime-created ===
+@export var enable_screen_bend := true
+var _curve_base := 0.12        # baseline bend amount
+var _curve_pulse := 0.0        # transient pulse on roar
+var _screen_layer: CanvasLayer = null
+var _screen_rect: ColorRect = null
+var _screen_mat: ShaderMaterial = null
+
+
 var last_footstep_time := 0.0
 const FOOTSTEP_INTERVAL := 0.4  # seconds between steps
 
@@ -62,6 +71,11 @@ func _ready():
 	camera = controller.camera
 	original_camera_y = camera.position.y
 	print("🧍 Player ready. Mode: WALK")
+	camera = controller.camera
+	original_camera_y = camera.position.y
+	print("🧍 Player ready. Mode: WALK")
+	_init_screen_bend()  # <<< ADD THIS
+
 	
 
 func _physics_process(delta):
@@ -86,6 +100,7 @@ func _physics_process(delta):
 		stuck_timer += delta
 		print("⛔ STUCK: ", stuck_timer)
 		eaten_sound.play()
+		_curve_pulse = 60   # <<< bend spike when the house roars
 		print("🎧 Playing 'eaten' sound")
 		
 	else:
@@ -95,6 +110,14 @@ func _physics_process(delta):
 		if not eaten_sound.playing:
 			print("🎧 Playing 'eaten' sound")
 			eaten_sound.play()
+		# --- Screen bend drive ---
+	if _screen_mat:
+		# decay any roar pulse
+		_curve_pulse = max(0.0, _curve_pulse - delta * 1.2)
+		# bend grows slightly with panic, spikes with pulse
+		var curve := _curve_base + (panic_level * 0.04) + (_curve_pulse * 0.08)
+		_screen_mat.set_shader_parameter("curve", curve)
+
 
 
 
@@ -266,6 +289,12 @@ var PANIC_THRESHOLD := 0.6
 func _process(delta):
 	_update_panic(delta)
 	_handle_audio_feedback()
+		# --- Screen bend drive (post) ---
+	if _screen_mat:
+		_curve_pulse = max(0.0, _curve_pulse - delta * 1.2) # decay roar pulse
+		var curve := _curve_base + (panic_level * 0.04) + (_curve_pulse * 0.08)
+		_screen_mat.set_shader_parameter("curve", curve)
+
 
 func _update_panic(delta):
 	if is_walking:
@@ -284,3 +313,57 @@ func _handle_audio_feedback():
 			breathing_player.stop()
 		if heartbeat_player.playing:
 			heartbeat_player.stop()
+
+
+
+
+func _init_screen_bend():
+	if not enable_screen_bend: return
+	if _screen_mat: return  # already set up
+
+	# Create shader from code (kept INSIDE this script as requested)
+	var shader_code := """
+shader_type canvas_item;
+uniform float curve : hint_range(0.0, 0.5) = 0.12;
+void fragment() {
+	vec2 uv = SCREEN_UV * 2.0 - 1.0;
+	float r2 = dot(uv, uv);
+	vec2 barrel = uv * (1.0 + curve * r2);
+	vec3 col = texture(SCREEN_TEXTURE, barrel * 0.5 + 0.5).rgb;
+	COLOR = vec4(col, 1.0);
+}
+"""
+	var sh := Shader.new()
+	sh.code = shader_code
+	_screen_mat = ShaderMaterial.new()
+	_screen_mat.shader = sh
+
+	_screen_layer = CanvasLayer.new()
+	_screen_layer.layer = 100  # on top of UI
+	add_child(_screen_layer)
+
+	_screen_rect = ColorRect.new()
+	_screen_rect.color = Color(1,1,1,0)  # invisible; shader shows screen
+	_screen_rect.material = _screen_mat
+	_screen_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	# Fullscreen anchors
+	_screen_rect.anchor_left = 0.0
+	_screen_rect.anchor_top = 0.0
+	_screen_rect.anchor_right = 1.0
+	_screen_rect.anchor_bottom = 1.0
+	_screen_rect.offset_left = 0
+	_screen_rect.offset_top = 0
+	_screen_rect.offset_right = 0
+	_screen_rect.offset_bottom = 0
+
+	_screen_layer.add_child(_screen_rect)
+# Keep it sized on resize (anchors already handle this, but safe to connect)
+	var vp := get_viewport()
+	if not vp.size_changed.is_connected(Callable(self, "_on_viewport_resized")):
+		vp.size_changed.connect(_on_viewport_resized)
+
+
+func _on_viewport_resized():
+	if _screen_rect:
+		# anchors stretch, but force a refresh just in case
+		_screen_rect.queue_redraw()
