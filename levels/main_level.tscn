@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://ia4ouu4k3uqs"]
+[gd_scene load_steps=40 format=3 uid="uid://ia4ouu4k3uqs"]
 
 [ext_resource type="Script" uid="uid://blqrjo76nxlwp" path="res://levels/main_level.gd" id="1_vx07q"]
 [ext_resource type="Script" uid="uid://b3u8w1ba8beq4" path="res://ChapterManager.gd" id="2_e7con"]
@@ -12,7 +12,6 @@
 [ext_resource type="Resource" uid="uid://d3fxd6yakgssl" path="res://Interaction/Items/CraftSystem/ItemC.tres" id="8_eqjoo"]
 [ext_resource type="PackedScene" uid="uid://dxscyy3vgif0i" path="res://Interaction/Ladder/Ladder.tscn" id="9_choik"]
 [ext_resource type="PackedScene" uid="uid://8dhe50hq6tpg" path="res://Interaction/Lever/Lever.tscn" id="10_gfxh2"]
-[ext_resource type="Texture2D" uid="uid://yxo6fxuxe8mn" path="res://DemoPlayer/360_F_313818309_sI2LhUeMYPtLzskyGcfWsHpvHxSjBtlt.jpg" id="11_1g47i"]
 [ext_resource type="PackedScene" uid="uid://bewfv5qqvds0r" path="res://Interaction/Elevator/Elevator.tscn" id="11_56fax"]
 [ext_resource type="Shader" uid="uid://dse738aicqevy" path="res://levels/main_level.gdshader" id="11_e7con"]
 [ext_resource type="AudioStream" uid="uid://dj323cftpppt" path="res://DemoPlayer/hello-46355.mp3" id="12_t6wdf"]
@@ -38,7 +37,6 @@ fog_enabled = true
 fog_light_color = Color(0.467259, 0.0950814, 0.179076, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyy41"]
-albedo_texture = ExtResource("11_1g47i")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77eh0"]
 
@@ -50,13 +48,10 @@ size = Vector3(10, 1, 10)
 data = PackedVector3Array(-5, 0.5, 5, 5, 0.5, 5, -5, -0.5, 5, 5, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 5, 0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, 5, 0.5, 5, 5, 0.5, -5, 5, -0.5, 5, 5, 0.5, -5, 5, -0.5, -5, 5, -0.5, 5, -5, 0.5, -5, -5, 0.5, 5, -5, -0.5, -5, -5, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, 5, 0.5, 5, -5, 0.5, 5, 5, 0.5, -5, -5, 0.5, 5, -5, 0.5, -5, 5, 0.5, -5, -5, -0.5, 5, 5, -0.5, 5, -5, -0.5, -5, 5, -0.5, 5, 5, -0.5, -5, -5, -0.5, -5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gdgmy"]
-albedo_texture = ExtResource("11_1g47i")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n00sm"]
-albedo_texture = ExtResource("11_1g47i")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ss25c"]
-albedo_texture = ExtResource("11_1g47i")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1g47i"]
 
@@ -66,7 +61,6 @@ next_pass = SubResource("CanvasItemMaterial_1g47i")
 shader = ExtResource("11_e7con")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pc7vm"]
-albedo_texture = ExtResource("11_1g47i")
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jdgad"]
 data = PackedVector3Array(-5, 0.5, 5, 5, 0.5, 5, -5, -0.5, 5, 5, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 5, 0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, 5, 0.5, 5, 5, 0.5, -5, 5, -0.5, 5, 5, 0.5, -5, 5, -0.5, -5, 5, -0.5, 5, -5, 0.5, -5, -5, 0.5, 5, -5, -0.5, -5, -5, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, 5, 0.5, 5, -5, 0.5, 5, 5, 0.5, -5, -5, 0.5, 5, -5, 0.5, -5, 5, 0.5, -5, -5, -0.5, 5, 5, -0.5, 5, -5, -0.5, -5, 5, -0.5, 5, 5, -0.5, -5, -5, -0.5, -5)
@@ -307,6 +301,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.798, -0.604, 126.99)
 
 [node name="model_walk" parent="." instance=ExtResource("24_n00sm")]
 transform = Transform3D(0.00630981, 0, -0.021757, 0, 0.0226585, 0, 0.0291594, 0, 0.00470801, 5.01919, 0.15155, 3.72528)
+visible = false
 
 [node name="HouseMonster" parent="." instance=ExtResource("25_ss25c")]
-transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 3.33982, 0, 3.92277)
+transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 2.38849, 0.449778, 3.20952)

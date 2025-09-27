@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://unvouhse061n"]
+
+[ext_resource type="PackedScene" uid="uid://dohw4h073si86" path="res://museum_guy#0000/museum_guy#0000/animations/walk/model_walk.gltf" id="1_d4w8y"]
+[ext_resource type="Script" uid="uid://duqr7hya7gc3n" path="res://model_walk.gd" id="2_lna5x"]
+[ext_resource type="AudioStream" uid="uid://jbfmmexr8eto" path="res://DemoPlayer/footsteps-in-a-hallway-47842.mp3" id="3_lkp6u"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6n82x"]
+
+[node name="model_walk" instance=ExtResource("1_d4w8y")]
+script = ExtResource("2_lna5x")
+
+[node name="Skeleton3D" parent="rig" index="0"]
+transform = Transform3D(-0.984322, -0.17638, 0, 0.17638, -0.984322, 0, 0, 0, 1, 0, 0, 0)
+bones/1/position = Vector3(-0.151002, 21.8955, -0.000219227)
+bones/1/rotation = Quaternion(0.107713, -0.00014002, 0.0118405, 0.994111)
+bones/2/position = Vector3(0.135124, 11.7042, -0.225654)
+bones/2/rotation = Quaternion(-0.0470919, -0.000146456, -0.0129077, 0.998807)
+bones/3/rotation = Quaternion(-0.0760714, 3.31627e-06, 0.000800677, 0.997102)
+bones/4/rotation = Quaternion(-0.0739608, 0.000123032, -0.0163322, 0.997127)
+bones/5/rotation = Quaternion(0.0588822, 1.10055e-06, 0.00591599, 0.998247)
+bones/6/rotation = Quaternion(0.0710486, 7.51585e-05, 0.0147359, 0.997364)
+bones/7/position = Vector3(6.61551, 0.794144, -2.8892)
+bones/7/rotation = Quaternion(0.0504088, 0.029203, 0.816275, -0.574718)
+bones/8/rotation = Quaternion(0.355143, 0.611601, -0.334064, 0.623072)
+bones/9/rotation = Quaternion(0.046145, 0.839104, 0.141359, 0.523252)
+bones/10/rotation = Quaternion(0.0189489, 0.000837411, 0.0562683, 0.998236)
+bones/11/position = Vector3(-11.4205, 0.829196, -2.8843)
+bones/11/rotation = Quaternion(-0.12621, -0.111531, 0.814861, 0.554648)
+bones/12/rotation = Quaternion(-0.430817, 0.895569, -0.0827893, 0.0741558)
+bones/13/rotation = Quaternion(-0.0665812, -0.481999, -0.04429, 0.872515)
+bones/14/position = Vector3(-3.89516e-05, 18.0489, 2.14279e-05)
+bones/14/rotation = Quaternion(-0.0472027, -8.43253e-05, -0.0461318, 0.997819)
+bones/15/rotation = Quaternion(0.661211, 0.000701183, 0.749949, -0.0194085)
+bones/16/rotation = Quaternion(-0.281448, 0.762212, 0.123008, 0.569815)
+bones/17/rotation = Quaternion(0.137381, -0.170442, 0.0409162, 0.974886)
+bones/18/rotation = Quaternion(-0.166607, 0.612662, 0.766863, -0.0938513)
+bones/19/rotation = Quaternion(-0.234843, -0.363061, 0.0247617, 0.901345)
+bones/20/rotation = Quaternion(-0.176717, 0.527504, -0.000101529, 0.83097)
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." index="2"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="3"]
+stream = ExtResource("3_lkp6u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="4"]
+transform = Transform3D(32.4099, 0, 0, 0, 36.2195, 0, 0, 0, 28.5705, 0, -3.15206, 6.463)
+shape = SubResource("CapsuleShape3D_6n82x")
