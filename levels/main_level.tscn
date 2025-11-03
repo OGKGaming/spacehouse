@@ -1,78 +1,31 @@
-[gd_scene load_steps=40 format=3 uid="uid://ia4ouu4k3uqs"]
+[gd_scene load_steps=19 format=3 uid="uid://ia4ouu4k3uqs"]
 
 [ext_resource type="Script" uid="uid://blqrjo76nxlwp" path="res://levels/main_level.gd" id="1_vx07q"]
 [ext_resource type="Script" uid="uid://b3u8w1ba8beq4" path="res://ChapterManager.gd" id="2_e7con"]
-[ext_resource type="PackedScene" uid="uid://drhgphis4p5f4" path="res://Interaction/Furniture/furniture.tscn" id="3_v1ssk"]
 [ext_resource type="PackedScene" uid="uid://kml8qcwn13ln" path="res://Interaction/Items/Key/Key.tscn" id="3_yr0xy"]
 [ext_resource type="PackedScene" uid="uid://brq6b1cfuv5q0" path="res://Interaction/Items/PowerCell/power_cell.tscn" id="4_57428"]
-[ext_resource type="PackedScene" uid="uid://cf6kwdtk20wvb" path="res://Interaction/Items/CraftSystem/BoxItem.tscn" id="5_66kd7"]
-[ext_resource type="Resource" uid="uid://c371lrjw81eam" path="res://Interaction/Items/CraftSystem/ItemA.tres" id="6_8k1ah"]
-[ext_resource type="Resource" uid="uid://cesrra7tvcw10" path="res://Interaction/Items/CraftSystem/ItemB.tres" id="7_angx4"]
 [ext_resource type="PackedScene" uid="uid://bfpe0mf4u838k" path="res://DemoPlayer/demo_player.tscn" id="8_4gt88"]
-[ext_resource type="Resource" uid="uid://d3fxd6yakgssl" path="res://Interaction/Items/CraftSystem/ItemC.tres" id="8_eqjoo"]
-[ext_resource type="PackedScene" uid="uid://dxscyy3vgif0i" path="res://Interaction/Ladder/Ladder.tscn" id="9_choik"]
-[ext_resource type="PackedScene" uid="uid://8dhe50hq6tpg" path="res://Interaction/Lever/Lever.tscn" id="10_gfxh2"]
-[ext_resource type="PackedScene" uid="uid://bewfv5qqvds0r" path="res://Interaction/Elevator/Elevator.tscn" id="11_56fax"]
-[ext_resource type="Shader" uid="uid://dse738aicqevy" path="res://levels/main_level.gdshader" id="11_e7con"]
+[ext_resource type="AudioStream" uid="uid://jbfmmexr8eto" path="res://DemoPlayer/footsteps-in-a-hallway-47842.mp3" id="9_bv0m5"]
 [ext_resource type="AudioStream" uid="uid://dj323cftpppt" path="res://DemoPlayer/hello-46355.mp3" id="12_t6wdf"]
 [ext_resource type="AudioStream" uid="uid://cxdnp58nqulkc" path="res://Interaction/Ladder/horror-background-atmosphere-156462.mp3" id="13_p6yen"]
 [ext_resource type="AudioStream" uid="uid://c5erse0fndj35" path="res://DemoPlayer/mixkit-terror-radio-frequency-2566.wav" id="14_n00sm"]
 [ext_resource type="AudioStream" uid="uid://bg4wf0knnrqj0" path="res://DemoPlayer/breathing-160445.mp3" id="15_bv0m5"]
-[ext_resource type="AudioStream" uid="uid://b4nghxihxhhlm" path="res://DemoPlayer/st3-footstep-sfx-323056.mp3" id="15_ol4gt"]
 [ext_resource type="PackedScene" uid="uid://c52grvp5s1nhh" path="res://collhouse.tscn" id="16_bv0m5"]
 [ext_resource type="AudioStream" uid="uid://d3im5fd4625wj" path="res://heartbeat-01-brvhrtz-225058.mp3" id="16_vy62f"]
+[ext_resource type="VideoStream" uid="uid://b1y7gp3i1xkag" path="res://Hailuo_Video_A wide, cinematic shot of a gr_441545213864075273.ogv" id="17_vy62f"]
 [ext_resource type="AudioStream" uid="uid://byvlrupcf10tw" path="res://DemoPlayer/mixkit-angry-dragon-growl-309.wav" id="21_gdgmy"]
 [ext_resource type="PackedScene" uid="uid://cb6dp2chwrtr3" path="res://model_walk.tscn" id="24_n00sm"]
+[ext_resource type="PackedScene" uid="uid://bd5bcum8ag82o" path="res://bigmuseumcol.tscn" id="24_ss25c"]
 [ext_resource type="PackedScene" uid="uid://dqwa1ef6g3xfk" path="res://house_monster.tscn" id="25_ss25c"]
 
 [sub_resource type="Environment" id="Environment_vx07q"]
 background_mode = 1
-background_color = Color(0.360784, 0, 0, 1)
 background_energy_multiplier = 4.65
-ambient_light_color = Color(0.144091, 6.69318e-08, 1.50409e-08, 1)
 ambient_light_energy = 5.86
 reflected_light_source = 2
 tonemap_mode = 3
 fog_enabled = true
-fog_light_color = Color(0.467259, 0.0950814, 0.179076, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uyy41"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_77eh0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_rc4ca"]
-material = SubResource("StandardMaterial3D_77eh0")
-size = Vector3(10, 1, 10)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_x0e22"]
-data = PackedVector3Array(-5, 0.5, 5, 5, 0.5, 5, -5, -0.5, 5, 5, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 5, 0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, 5, 0.5, 5, 5, 0.5, -5, 5, -0.5, 5, 5, 0.5, -5, 5, -0.5, -5, 5, -0.5, 5, -5, 0.5, -5, -5, 0.5, 5, -5, -0.5, -5, -5, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, 5, 0.5, 5, -5, 0.5, 5, 5, 0.5, -5, -5, 0.5, 5, -5, 0.5, -5, 5, 0.5, -5, -5, -0.5, 5, 5, -0.5, 5, -5, -0.5, -5, 5, -0.5, 5, 5, -0.5, -5, -5, -0.5, -5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gdgmy"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n00sm"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ss25c"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1g47i"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uyy41"]
-render_priority = 0
-next_pass = SubResource("CanvasItemMaterial_1g47i")
-shader = ExtResource("11_e7con")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pc7vm"]
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jdgad"]
-data = PackedVector3Array(-5, 0.5, 5, 5, 0.5, 5, -5, -0.5, 5, 5, 0.5, 5, 5, -0.5, 5, -5, -0.5, 5, 5, 0.5, -5, -5, 0.5, -5, 5, -0.5, -5, -5, 0.5, -5, -5, -0.5, -5, 5, -0.5, -5, 5, 0.5, 5, 5, 0.5, -5, 5, -0.5, 5, 5, 0.5, -5, 5, -0.5, -5, 5, -0.5, 5, -5, 0.5, -5, -5, 0.5, 5, -5, -0.5, -5, -5, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, 5, 0.5, 5, -5, 0.5, 5, 5, 0.5, -5, -5, 0.5, 5, -5, 0.5, -5, 5, 0.5, -5, -5, -0.5, 5, 5, -0.5, 5, -5, -0.5, -5, 5, -0.5, 5, 5, -0.5, -5, -5, -0.5, -5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvfk0"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_qh0j3"]
-material = SubResource("StandardMaterial3D_rvfk0")
-size = Vector3(2, 1, 2)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ps3hx"]
-data = PackedVector3Array(-1, 0.5, 1, 1, 0.5, 1, -1, -0.5, 1, 1, 0.5, 1, 1, -0.5, 1, -1, -0.5, 1, 1, 0.5, -1, -1, 0.5, -1, 1, -0.5, -1, -1, 0.5, -1, -1, -0.5, -1, 1, -0.5, -1, 1, 0.5, 1, 1, 0.5, -1, 1, -0.5, 1, 1, 0.5, -1, 1, -0.5, -1, 1, -0.5, 1, -1, 0.5, -1, -1, 0.5, 1, -1, -0.5, -1, -1, 0.5, 1, -1, -0.5, 1, -1, -0.5, -1, 1, 0.5, 1, -1, 0.5, 1, 1, 0.5, -1, -1, 0.5, 1, -1, 0.5, -1, 1, 0.5, -1, -1, -0.5, 1, 1, -0.5, 1, -1, -0.5, -1, 1, -0.5, 1, 1, -0.5, -1, -1, -0.5, -1)
+fog_light_color = Color(0, 0, 0, 1)
 
 [node name="DemoLevel" type="Node3D"]
 script = ExtResource("1_vx07q")
@@ -89,170 +42,32 @@ sky_mode = 2
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vx07q")
 
-[node name="DemoPlayer" parent="." instance=ExtResource("8_4gt88")]
-transform = Transform3D(0.666099, 0, 0, 0, 0.825424, 0, 0, 0, 0.570077, 0, 0.101519, 3.65036)
+[node name="DemoPlayer" parent="." groups=["player"] instance=ExtResource("8_4gt88")]
+transform = Transform3D(0.656942, 0, 0, 0, 0.814077, 0, 0, 0, 0.56224, 0.869045, -2.74925, -18.1541)
+visible = false
 
 [node name="Items" type="Node3D" parent="."]
-
-[node name="Furniture2" parent="Items" instance=ExtResource("3_v1ssk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.26114, -0.686868, -1.03309)
 
 [node name="key" parent="Items" instance=ExtResource("3_yr0xy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83513, 0, 2.30264)
 
-[node name="CollectibleItem2" parent="Items" instance=ExtResource("5_66kd7")]
-transform = Transform3D(0.289025, 0, 0, 0, 0.312888, 0, 0, 0, 0.392419, 6.81519, 0.285214, -3.30761)
-item = ExtResource("6_8k1ah")
-
-[node name="CollectibleItem3" parent="Items" instance=ExtResource("5_66kd7")]
-transform = Transform3D(0.236448, 0, 0, 0, 0.201328, 0, 0, 0, 0.2538, 6.92134, 1.02082, -2.81983)
-item = ExtResource("7_angx4")
-
-[node name="CollectibleItem4" parent="Items" instance=ExtResource("5_66kd7")]
-transform = Transform3D(0.240461, 0, 0, 0, 0.234918, 0, 0, 0, 0.310889, 5.49114, 0.785468, -3.57414)
-item = ExtResource("8_eqjoo")
-
 [node name="Power Cell" parent="Items" instance=ExtResource("4_57428")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.78135, 0, 2.83637)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91511, -3.57836, -42.8767)
 
 [node name="Power Cell2" parent="Items" instance=ExtResource("4_57428")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.82687, 0, 3.06639)
 
 [node name="Power Cell3" parent="Items" instance=ExtResource("4_57428")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.68304, 0.611335, 4.71232)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9839, 0.611335, 60.4437)
 
 [node name="Power Cell4" parent="Items" instance=ExtResource("4_57428")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.561343, 0, 4.45728)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5797, -0.063809, -14.6186)
 
 [node name="Power Cell5" parent="Items" instance=ExtResource("4_57428")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.41023, 0.720554, 2.0277)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8018, 1.16344, 34.3741)
 
 [node name="Power Cell6" parent="Items" instance=ExtResource("4_57428")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7254, 0.146397, 0.498344)
-
-[node name="Enviroment" type="Node3D" parent="."]
-
-[node name="Ground2" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(0.262151, 0.881451, 0, -9.7573, 0.0236821, 0, 0, 0, 7.69124, 26.9577, 3.33862, 1.56729)
-material_override = SubResource("StandardMaterial3D_uyy41")
-gi_lightmap_texel_scale = 1.084
-mesh = SubResource("BoxMesh_rc4ca")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground2/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_x0e22")
-
-[node name="Ground6" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(0.0216988, 0.0142728, 7.62695, -9.95684, 0.0233307, 0.0133201, -0.26429, -0.877787, 0.124368, 8.85621, -4.09283, 11.8792)
-material_override = SubResource("StandardMaterial3D_gdgmy")
-gi_lightmap_texel_scale = 1.084
-mesh = SubResource("BoxMesh_rc4ca")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground6"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground6/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_x0e22")
-
-[node name="Ground8" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(0.0216988, 0.0142728, 7.62695, 0.223283, -0.877877, 0.123567, 9.95784, 0.0196534, -0.0193903, 9.53013, 24.9517, 12.1487)
-material_override = SubResource("StandardMaterial3D_n00sm")
-gi_lightmap_texel_scale = 1.084
-mesh = SubResource("BoxMesh_rc4ca")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground8"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground8/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_x0e22")
-
-[node name="Ground7" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(0.00310909, 0.0114573, 7.67347, -8.97226, 0.0238668, 3.46993e-12, -0.241039, -0.888253, 0.0989774, 8.85621, 3.33862, -12.8058)
-material_override = SubResource("StandardMaterial3D_ss25c")
-gi_lightmap_texel_scale = 1.084
-mesh = SubResource("BoxMesh_rc4ca")
-skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("ShaderMaterial_uyy41")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground7"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground7/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_x0e22")
-
-[node name="Ground5" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(0.298212, 0.863728, 0, -11.0995, 0.0232059, 0, 0, 0, 7.67437, -14.2481, 3.14747, 1.56729)
-material_override = SubResource("StandardMaterial3D_pc7vm")
-gi_lightmap_texel_scale = 1.084
-mesh = SubResource("BoxMesh_rc4ca")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground5"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground5/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_x0e22")
-
-[node name="Ground3" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(0.590069, 0.0037219, 0.00107863, -0.433508, 0.00506639, -4.02043e-05, -0.00486783, -2.83688e-05, 0.134331, 13.6648, -3.1217, 0.403215)
-mesh = SubResource("BoxMesh_rc4ca")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground3"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground3/StaticBody3D"]
-transform = Transform3D(1, -4.03901e-10, -1.16415e-10, -6.14673e-08, 1, 7.45058e-09, 0, 0, 1, 0.218987, -84.5533, 4.42077)
-shape = SubResource("ConcavePolygonShape3D_jdgad")
-
-[node name="Ground4" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(0.328683, 0, 0, 0, 0.439173, 0, 0, 0, 0.195347, 12.4602, -0.198634, -8.82411)
-mesh = SubResource("BoxMesh_rc4ca")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/Ground4"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/Ground4/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_jdgad")
-
-[node name="Walls" type="Node3D" parent="Enviroment"]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, -0.501779, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.72273, -1.35745, -3.01053)
-mesh = SubResource("BoxMesh_qh0j3")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_ps3hx")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Enviroment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.16444, -0.710158, 0)
-mesh = SubResource("BoxMesh_qh0j3")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Enviroment/MeshInstance3D2"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Enviroment/MeshInstance3D2/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_ps3hx")
-
-[node name="Interaction" type="Node3D" parent="."]
-
-[node name="Ladder" parent="Interaction" instance=ExtResource("9_choik")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5.43656, 13.6702, -0.0167875)
-
-[node name="Lever" parent="." node_paths=PackedStringArray("object") instance=ExtResource("10_gfxh2")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 5.28415, -1, -5.77361)
-object = NodePath("../Elevator")
-
-[node name="Lever2" parent="." node_paths=PackedStringArray("object") instance=ExtResource("10_gfxh2")]
-transform = Transform3D(-0.0930275, 0, -1.99784, 0, 2, 0, 1.99784, 0, -0.0930275, 9.38331, 3.92089, -5.77361)
-start_mode_activated = true
-object = NodePath("../Elevator")
-
-[node name="Elevator" parent="." instance=ExtResource("11_56fax")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.56069, -1.23216, -8.47706)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.84602, 0.146397, -7.3197)
 
 [node name="VoicePlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("12_t6wdf")
@@ -260,20 +75,19 @@ volume_db = 53.333
 
 [node name="brmusic" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("13_p6yen")
-volume_db = -40.106
+volume_db = -22.246
 unit_size = 100.0
 autoplay = true
 max_distance = 4096.0
 
 [node name="breath" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("15_bv0m5")
-volume_db = 28.857
+volume_db = -18.381
 autoplay = true
 parameters/looping = true
 
 [node name="FootstepPlayer" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("15_ol4gt")
-attenuation_model = 2
+stream = ExtResource("9_bv0m5")
 volume_db = 57.436
 unit_size = 1.0
 max_distance = 4096.0
@@ -297,11 +111,40 @@ volume_db = -20.148
 autoplay = true
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("16_bv0m5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.798, -0.604, 126.99)
+transform = Transform3D(2.04677, 0, 0, 0, 1, 0, 0, 0, 3.80214, 45.798, 20.9833, 420.286)
+visible = false
 
 [node name="model_walk" parent="." instance=ExtResource("24_n00sm")]
 transform = Transform3D(0.00630981, 0, -0.021757, 0, 0.0226585, 0, 0.0291594, 0, 0.00470801, 5.01919, 0.15155, 3.72528)
 visible = false
 
 [node name="HouseMonster" parent="." instance=ExtResource("25_ss25c")]
-transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 2.38849, 0.449778, 3.20952)
+transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 46.6995, -2.19567, -19.4433)
+
+[node name="HouseMonster2" parent="." instance=ExtResource("25_ss25c")]
+transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 32.256, 6.39275, -125.392)
+
+[node name="HouseMonster3" parent="." instance=ExtResource("25_ss25c")]
+transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, -8.65854, 1.29856, 152.595)
+
+[node name="HouseMonster4" parent="." instance=ExtResource("25_ss25c")]
+transform = Transform3D(0.0226058, -0.00284437, 0, 0.00247813, 0.0259467, 0, 0, 0, 0.0233304, -24.1864, 1.20881, 81.3407)
+
+[node name="HouseMonster5" parent="." instance=ExtResource("25_ss25c")]
+transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 22.2075, 2.72496, 15.497)
+
+[node name="Sketchfab_Scene2" parent="." instance=ExtResource("24_ss25c")]
+transform = Transform3D(0.505167, 0, 0, 0, 0.511603, 0, 0, 0, 0.625747, 1.75981, -3.80904, -19.3353)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_n00sm")
+autoplay = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer"]
+offset_right = 2961.0
+offset_bottom = 1782.0
+scale = Vector2(1.6, 1.56)
+stream = ExtResource("17_vy62f")
+autoplay = true

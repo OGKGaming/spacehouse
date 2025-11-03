@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dts23pi2ye3nw"
+path="res://.godot/imported/thomassimons024_gmail_com - Untitled (1).mp3-c2a8041aad13f38d70ba43d71cb9f76e.mp3str"
+
+[deps]
+
+source_file="res://DemoPlayer/thomassimons024_gmail_com - Untitled (1).mp3"
+dest_files=["res://.godot/imported/thomassimons024_gmail_com - Untitled (1).mp3-c2a8041aad13f38d70ba43d71cb9f76e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

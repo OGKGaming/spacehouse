@@ -6,6 +6,19 @@ var pause_menu: CanvasLayer
 var is_paused := false
 
 func _ready():
+	video_player.play()
+	
+	# Start with normal size
+	video_player.scale = Vector2(1, 1)
+	
+	# Tween to zoom in slowly
+	var tween = create_tween()
+	tween.tween_property(video_player, "scale", Vector2(1.5, 1.5), 5.0)  # zoom in over 5 seconds
+	tween.set_trans(Tween.TRANS_SINE)
+
+	video_player.play()
+	video_player.connect("finished", Callable(self, "_on_video_finished"))
+
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	await chapter_manager.advance()
 	chapter_manager._play_in_game_monologue(1)
@@ -61,3 +74,18 @@ func _create_pause_menu():
 	quit_button.text = "Quit"
 	quit_button.pressed.connect(func(): get_tree().quit())
 	vbox.add_child(quit_button)
+	
+
+@onready var video_player =$CanvasLayer/VideoStreamPlayer
+var play_count = 0
+var max_plays = 4
+
+  
+func _on_video_finished():
+	play_count += 1
+	if play_count < max_plays:
+		video_player.play()  # Replay
+	else:
+		print("Video finished playing", max_plays, "times.")
+		# Optional: fade out, change scene, etc.
+		# get_tree().change_scene_to_file("res://NextScene.tscn")

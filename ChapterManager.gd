@@ -10,7 +10,7 @@ signal transition_complete(chapter_index: int)
 var current_chapter := -1
 
 var chapters := [
-	"This thing doesn’t come with instructions., Just buttons. Blinking. Ticking. Breathing...",
+	"",
 	" Something's Breathing in the Walls",
 	" Lights That Don’t Remember",
 	" Echoes in the Intercom",
@@ -22,7 +22,7 @@ var chapters := [
 	" Let Go of the Ship"
 ]
 
-var chapter_images: Array[Texture2D] = [load("res://DemoPlayer/chapter_01_title.png"), null, null, null, null, null, null, null, null, null]
+var chapter_images: Array[Texture2D] = [load("res://DemoPlayer/chapter_01_title.png") , load("res://Interaction/Items/PowerCell/mwgot.png") , load("res://DemoPlayer/chapter_02_title.png"), null, null, null, null, null, null, null]
 var chapter_videos := [
 	"res://cutscenes/ch1.webm", "res://cutscenes/ch2.webm", "res://cutscenes/ch3.webm",
 	"res://cutscenes/ch4.webm", "res://cutscenes/ch5.webm", "res://cutscenes/ch6.webm",
@@ -53,7 +53,7 @@ var chapter_durations := [
 ]
 
 @export var fade_in_time := 1.5
-@export var title_hold_time := 5.0
+@export var title_hold_time := 2.0
 @export var crossfade_time := 0.8
 @export var fade_out_time := 1.2
 
@@ -71,6 +71,8 @@ var _transition_running := false
 
 func _ready():
 	_build_ui_once()
+	play_first_two_chapter_images()
+
 
 func _build_ui_once():
 	if _ui_layer: return
@@ -242,3 +244,60 @@ func _pause_player(freeze: bool) -> void:
 		var p = get_node("/root/DemoLevel/Player")
 		if p.has_variable("can_move_camera"):
 			p.can_move_camera = not freeze
+
+# --- Helper: safe mapping (chapter 1 -> image index 0, etc.)
+func _get_chapter_tex_for(ch_idx: int) -> Texture2D:
+	var i := ch_idx - 1
+	if i >= 0 and i < chapter_images.size():
+		return chapter_images[i]
+	return null
+
+# --- Show only the title card (image + optional label), then fade out
+func _run_title_only(ch_idx: int) -> void:
+	if _transition_running:
+		return
+	if ch_idx < 0 or ch_idx >= chapters.size():
+		push_warning("Title-only skip: bad chapter index %s" % ch_idx)
+		return
+
+	_transition_running = true
+	if lock_player_during_transition:
+		_pause_player(true)
+
+	_ui_layer.show()
+	_fade_rect.modulate.a = 1.0
+
+	var tex := _get_chapter_tex_for(ch_idx)
+	_title_image.texture = tex
+	_title_image.visible = tex != null
+
+	_title_label.text = chapters[ch_idx]
+	_title_label.visible = show_title_text
+
+	var t = create_tween()
+	t.tween_property(_fade_rect, "modulate:a", 0.0, fade_in_time)
+	await t.finished
+
+	await get_tree().create_timer(title_hold_time).timeout
+
+	t = create_tween()
+	t.tween_property(_fade_rect, "modulate:a", 1.0, crossfade_time)
+	await t.finished
+
+	_title_label.visible = false
+	_title_image.visible = false
+
+	t = create_tween()
+	t.tween_property(_fade_rect, "modulate:a", 0.0, fade_out_time)
+	await t.finished
+
+	_ui_layer.hide()
+	if lock_player_during_transition:
+		_pause_player(false)
+	_transition_running = false
+
+# --- Public: play Chapter 1 then Chapter 2 title images back-to-back
+func play_first_two_chapter_images() -> void:
+	await _run_title_only(1)
+	await _run_title_only(2)
+	await _run_title_only(3)

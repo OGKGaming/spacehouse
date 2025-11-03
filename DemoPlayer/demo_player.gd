@@ -85,7 +85,7 @@ func _physics_process(delta):
 	if input_pressed and not is_moving:
 		stuck_timer += delta
 		print("⛔ STUCK: ", stuck_timer)
-		eaten_sound.play()
+		#eaten_sound.play()
 		print("🎧 Playing 'eaten' sound")
 		
 	else:
@@ -94,7 +94,7 @@ func _physics_process(delta):
 	if stuck_timer > STUCK_THRESHOLD:
 		if not eaten_sound.playing:
 			print("🎧 Playing 'eaten' sound")
-			eaten_sound.play()
+			#eaten_sound.play()
 
 
 

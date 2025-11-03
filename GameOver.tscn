@@ -1,12 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbftstxu1gpvf"]
+[gd_scene load_steps=6 format=3 uid="uid://cbftstxu1gpvf"]
 
 [ext_resource type="Texture2D" uid="uid://cpg13moboslei" path="res://fposter,small,wall_texture,product,750x1000.jpg" id="1_40baj"]
 [ext_resource type="Script" uid="uid://b0jll62lst5bk" path="res://game_over.gd" id="1_a1htc"]
+[ext_resource type="VideoStream" uid="uid://b5k3l0b1jus3f" path="res://Hailuo_Video_A dark, barely lit room Julia_441554228283150337.ogv" id="2_jywu3"]
+[ext_resource type="Texture2D" uid="uid://b5gkc3ut0vxe8" path="res://DemoPlayer/chapter_03_title.png" id="3_eksk4"]
+[ext_resource type="AudioStream" uid="uid://dts23pi2ye3nw" path="res://DemoPlayer/thomassimons024_gmail_com - Untitled (1).mp3" id="4_xl4ts"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_a1htc")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2.03812, 1)
+stream = ExtResource("2_jywu3")
+autoplay = true
+loop = true
+
 [node name="Fposter,small,wallTexture,product,750x1000" type="Sprite2D" parent="."]
-position = Vector2(580.5, 330)
-scale = Vector2(2.09467, 1.518)
+position = Vector2(828.5, 430)
+scale = Vector2(3.1, 2.01)
 texture = ExtResource("1_40baj")
+
+[node name="Chapter03Title" type="Sprite2D" parent="."]
+position = Vector2(824, 574.5)
+scale = Vector2(2.27002, 1.2666)
+texture = ExtResource("3_eksk4")
+
+[node name="Thomassimons024GmailCom-Untitled(1)" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(344, 524)
+stream = ExtResource("4_xl4ts")
+volume_db = -20.8
+autoplay = true

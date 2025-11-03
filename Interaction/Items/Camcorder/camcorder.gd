@@ -165,8 +165,9 @@ func try_to_recharge():
 	else:
 		print("❌ No power cells available for recharge.")
 		if not startup_grace_period:
-			print("💀 Triggering game over scene...")
-			get_tree().change_scene_to_file("res://GameOver.tscn")
+			pass
+			#print("💀 Triggering game over scene...")
+			#get_tree().change_scene_to_file("res://GameOver.tscn")
 
 func format_elapsed_time(_elapsed_time: int) -> String:
 	var hours = _elapsed_time / 3600.0

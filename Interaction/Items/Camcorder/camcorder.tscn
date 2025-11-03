@@ -173,6 +173,7 @@ current = true
 script = ExtResource("1_7ygv8")
 
 [node name="FlowContainer2" type="FlowContainer" parent="."]
+visible = false
 offset_left = 765.0
 offset_top = 110.0
 offset_right = 1897.0
@@ -239,11 +240,13 @@ layout_mode = 2
 alignment = 2
 
 [node name="BatteriesLabel" type="Label" parent="UIContainer/EnergyContainer/FlowContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 26
 text = "0/0"
 
 [node name="ProgressBar" type="ProgressBar" parent="UIContainer/EnergyContainer/FlowContainer"]
+visible = false
 custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_ak27c")
@@ -253,6 +256,7 @@ show_percentage = false
 script = ExtResource("2_cbqwt")
 
 [node name="RecordingContainer" type="MarginContainer" parent="UIContainer"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -264,6 +268,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
 [node name="FlowContainer" type="FlowContainer" parent="UIContainer/RecordingContainer"]
+visible = false
 layout_mode = 2
 
 [node name="RecordingIcon" type="TextureRect" parent="UIContainer/RecordingContainer/FlowContainer"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dypxbudgnlxcx"]
+
+[ext_resource type="Script" uid="uid://my6ymeprelpy" path="res://canvas_layer.gd" id="1_ayt76"]
+[ext_resource type="Texture2D" uid="uid://bbh3iams7j06f" path="res://Interaction/Items/PowerCell/mwgot.png" id="2_7a8ye"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_ayt76")
+
+[node name="Mwgot" type="TextureRect" parent="CanvasLayer"]
+offset_left = -760.0
+offset_top = -431.0
+offset_right = 819.0
+offset_bottom = 945.0
+scale = Vector2(1.13379, 0.639648)
+texture = ExtResource("2_7a8ye")

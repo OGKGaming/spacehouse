@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3tlee"]
 
-[node name="HouseMonster" type="CharacterBody3D"]
+[node name="HouseMonster" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_ssnib")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
