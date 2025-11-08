@@ -11,7 +11,7 @@ var current_chapter := -1
 
 var chapters := [
 	"",
-	" Something's Breathing in the Walls",
+	"",
 	" Lights That Don’t Remember",
 	" Echoes in the Intercom",
 	" Hallways Rearranged",
@@ -22,9 +22,9 @@ var chapters := [
 	" Let Go of the Ship"
 ]
 
-var chapter_images: Array[Texture2D] = [load("res://DemoPlayer/chapter_01_title.png") , load("res://Interaction/Items/PowerCell/mwgot.png") , load("res://DemoPlayer/chapter_02_title.png"), null, null, null, null, null, null, null]
+var chapter_images: Array[Texture2D] = [load("res://ChatGPT Image Nov 6, 2025, 09_20_45 PM.png"), load("res://DemoPlayer/chapter_01_title.png"),load("res://Interaction/Items/PowerCell/mwgot.png")   , load("res://DemoPlayer/chapter_02_title.png"), null, null, null, null, null, null, null]
 var chapter_videos := [
-	"res://cutscenes/ch1.webm", "res://cutscenes/ch2.webm", "res://cutscenes/ch3.webm",
+	"res://cutscenes/ch2.webm", "res://cutscenes/ch3.webm",
 	"res://cutscenes/ch4.webm", "res://cutscenes/ch5.webm", "res://cutscenes/ch6.webm",
 	"res://cutscenes/ch7.webm", "res://cutscenes/ch8.webm", "res://cutscenes/ch9.webm",
 	"res://cutscenes/ch10.webm"
@@ -70,8 +70,12 @@ var _voice_player: AudioStreamPlayer
 var _transition_running := false
 
 func _ready():
+	#await get_tree().create_timer(1.0).timeout
 	_build_ui_once()
+	_prepare_and_play_video(0)
+	await get_tree().create_timer(1.0).timeout
 	play_first_two_chapter_images()
+
 
 
 func _build_ui_once():

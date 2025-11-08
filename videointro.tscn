@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://4qmxixs84wlq"]
+
+[ext_resource type="VideoStream" uid="uid://cko6rnkp83m0j" path="res://intro.ogv" id="1_80kh2"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="CanvasLayer"]
+offset_right = 3258.0
+offset_bottom = 2259.0
+scale = Vector2(1.88, 1.48)
+stream = ExtResource("1_80kh2")
+autoplay = true

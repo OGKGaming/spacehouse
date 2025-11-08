@@ -2,11 +2,19 @@ extends Node3D
 
 @onready var chapter_manager := $ChapterManager
 @onready var player := $DemoPlayer
+#@onready var full_image: TextureRect = $FullscreenImage
+
 var pause_menu: CanvasLayer
 var is_paused := false
 
 func _ready():
+	await get_tree().create_timer(200.0).timeout
+	#full_image.texture = load("res://DemoPlayer/chapter_01_title.png")
+	#full_image.visible = true
+	#full_image.visible = false
+
 	video_player.play()
+
 	
 	# Start with normal size
 	video_player.scale = Vector2(1, 1)

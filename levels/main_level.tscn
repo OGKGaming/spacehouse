@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://blqrjo76nxlwp" path="res://levels/main_level.gd" id="1_vx07q"]
 [ext_resource type="Script" uid="uid://b3u8w1ba8beq4" path="res://ChapterManager.gd" id="2_e7con"]
 [ext_resource type="PackedScene" uid="uid://kml8qcwn13ln" path="res://Interaction/Items/Key/Key.tscn" id="3_yr0xy"]
-[ext_resource type="PackedScene" uid="uid://brq6b1cfuv5q0" path="res://Interaction/Items/PowerCell/power_cell.tscn" id="4_57428"]
+[ext_resource type="PackedScene" uid="uid://d1yuremrc1v62" path="res://Interaction/Items/PowerCell/power_cell.tscn" id="4_57428"]
 [ext_resource type="PackedScene" uid="uid://bfpe0mf4u838k" path="res://DemoPlayer/demo_player.tscn" id="8_4gt88"]
 [ext_resource type="AudioStream" uid="uid://jbfmmexr8eto" path="res://DemoPlayer/footsteps-in-a-hallway-47842.mp3" id="9_bv0m5"]
 [ext_resource type="AudioStream" uid="uid://dj323cftpppt" path="res://DemoPlayer/hello-46355.mp3" id="12_t6wdf"]
@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bg4wf0knnrqj0" path="res://DemoPlayer/breathing-160445.mp3" id="15_bv0m5"]
 [ext_resource type="PackedScene" uid="uid://c52grvp5s1nhh" path="res://collhouse.tscn" id="16_bv0m5"]
 [ext_resource type="AudioStream" uid="uid://d3im5fd4625wj" path="res://heartbeat-01-brvhrtz-225058.mp3" id="16_vy62f"]
-[ext_resource type="VideoStream" uid="uid://b1y7gp3i1xkag" path="res://Hailuo_Video_A wide, cinematic shot of a gr_441545213864075273.ogv" id="17_vy62f"]
+[ext_resource type="Script" uid="uid://bn818r2udrwdk" path="res://levels/video_stream_player.gd" id="17_vy62f"]
 [ext_resource type="AudioStream" uid="uid://byvlrupcf10tw" path="res://DemoPlayer/mixkit-angry-dragon-growl-309.wav" id="21_gdgmy"]
 [ext_resource type="PackedScene" uid="uid://cb6dp2chwrtr3" path="res://model_walk.tscn" id="24_n00sm"]
 [ext_resource type="PackedScene" uid="uid://bd5bcum8ag82o" path="res://bigmuseumcol.tscn" id="24_ss25c"]
@@ -20,12 +20,24 @@
 
 [sub_resource type="Environment" id="Environment_vx07q"]
 background_mode = 1
+background_color = Color(0.800491, 0.800491, 0.800491, 1)
 background_energy_multiplier = 4.65
-ambient_light_energy = 5.86
-reflected_light_source = 2
+ambient_light_source = 3
+ambient_light_color = Color(0.0383972, 0.0383972, 0.0383972, 1)
+ambient_light_energy = 8.89
 tonemap_mode = 3
+tonemap_exposure = 2.19
+tonemap_white = 9.5
+glow_enabled = true
+glow_intensity = 3.28
+glow_bloom = 0.11
+glow_hdr_threshold = 0.75
+glow_hdr_scale = 1.28
+glow_hdr_luminance_cap = 39.65
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
+fog_sun_scatter = 0.38
+fog_density = 0.065
 
 [node name="DemoLevel" type="Node3D"]
 script = ExtResource("1_vx07q")
@@ -119,7 +131,7 @@ transform = Transform3D(0.00630981, 0, -0.021757, 0, 0.0226585, 0, 0.0291594, 0,
 visible = false
 
 [node name="HouseMonster" parent="." instance=ExtResource("25_ss25c")]
-transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 46.6995, -2.19567, -19.4433)
+transform = Transform3D(0.143205, 0, 0, 0, 0.164369, 0, 0, 0, 0.146915, 46.6995, -2.19567, -19.4433)
 
 [node name="HouseMonster2" parent="." instance=ExtResource("25_ss25c")]
 transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 32.256, 6.39275, -125.392)
@@ -131,7 +143,7 @@ transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, -8.65
 transform = Transform3D(0.0226058, -0.00284437, 0, 0.00247813, 0.0259467, 0, 0, 0, 0.0233304, -24.1864, 1.20881, 81.3407)
 
 [node name="HouseMonster5" parent="." instance=ExtResource("25_ss25c")]
-transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 22.2075, 2.72496, 15.497)
+transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 25.1769, 1.81687, 17.0711)
 
 [node name="Sketchfab_Scene2" parent="." instance=ExtResource("24_ss25c")]
 transform = Transform3D(0.505167, 0, 0, 0, 0.511603, 0, 0, 0, 0.625747, 1.75981, -3.80904, -19.3353)
@@ -146,5 +158,5 @@ autoplay = true
 offset_right = 2961.0
 offset_bottom = 1782.0
 scale = Vector2(1.6, 1.56)
-stream = ExtResource("17_vy62f")
-autoplay = true
+volume_db = -80.0
+script = ExtResource("17_vy62f")

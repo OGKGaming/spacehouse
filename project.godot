@@ -90,5 +90,6 @@ Crouch={
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 camera/depth_of_field/depth_of_field_bokeh_shape=0
