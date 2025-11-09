@@ -8,13 +8,11 @@ points = PackedVector3Array(-0.199618, -0.0851, -0.340952, 0.204671, 0.0851, 0.3
 
 [node name="DragInteraction" instance=ExtResource("1_6hugy")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
-weight = 0.01
-max_offset = 0.5
-max_offset_locked = 0.1
-is_locked = true
 
 [node name="MeshInstance3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, -0.0142065, -0.999899, 0, 0.999899, -0.0142065, 0, 0.393365, 0)
 mesh = ExtResource("2_obc2w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, -0.0136132, -0.999907, 0, 0.999907, -0.0136132, 0, 0.413515, 0)
 shape = SubResource("ConvexPolygonShape3D_7ytsq")

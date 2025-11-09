@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=4 uid="uid://d1yuremrc1v62"]
 
 [ext_resource type="PackedScene" uid="uid://igad63lnj4n5" path="res://Interaction/Items/CollectibleItem.tscn" id="1_5vtmk"]
-[ext_resource type="Script" path="res://Interaction/Items/PowerCell/power_cell.gd" id="2_ergjm"]
+[ext_resource type="Script" uid="uid://co6djj3x0o782" path="res://Interaction/Items/PowerCell/power_cell.gd" id="2_ergjm"]
 [ext_resource type="Script" uid="uid://cpojqa3hvj6xy" path="res://Inventory/CraftItemResource.gd" id="3_hpicp"]
 [ext_resource type="Script" uid="uid://c34pyxd80cy2k" path="res://Inventory/ItemResource.gd" id="4_yn8vw"]
 [ext_resource type="Texture2D" uid="uid://dj3myug3gt623" path="res://Interaction/Items/PowerCell/power_cell.png" id="5_638kk"]

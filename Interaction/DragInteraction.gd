@@ -22,6 +22,21 @@ class_name DragInteraction
 @export var break_key:= false
 @export var max_distance := 5.0
 
+
+# --- CLICK → PLAY VIDEO ---
+@export_file("*.tscn") var video_scene: String = "res://videointro.tscn"
+
+func _play_video_scene() -> void:
+	print("▶ Trying to play scene:", video_scene)
+	var packed := load(video_scene)                  # safer than exists()
+	if packed == null:
+		push_error("Can't load video scene: " + video_scene)
+		return
+	get_tree().change_scene_to_packed(packed)
+# --------------------------------
+
+
+
 signal interaction_end
 
 var player: Player
@@ -72,6 +87,8 @@ func get_max_value():
 	else:
 		return max_value	
 func interact(parameters=null):
+	_play_video_scene()
+	return
 	player = parameters
 	var selected_item = Inventory.get_selected_item()
 	if selected_item:
@@ -119,3 +136,9 @@ func _input(event):
 		return
 	if event is InputEventMouseMotion:
 		move_object(event.relative)
+		
+	set_process(true)
+	set_process_input(true)
+
+	# >>> PLAY VIDEO ON CLICK <<<
+	_play_video_scene()
