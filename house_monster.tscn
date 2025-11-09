@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqwa1ef6g3xfk"]
+[gd_scene load_steps=5 format=3 uid="uid://cvw733ummayth"]
 
 [ext_resource type="Script" uid="uid://bcy4he83qxc8u" path="res://house_monster.gd" id="1_ssnib"]
+[ext_resource type="PackedScene" uid="uid://unvouhse061n" path="res://sec_guy.tscn" id="2_3tlee"]
 [ext_resource type="PackedScene" uid="uid://cb6dp2chwrtr3" path="res://model_walk.tscn" id="2_8hgle"]
-[ext_resource type="PackedScene" uid="uid://unvouhse061n" path="res://sec_guy.tscn" id="3_3tlee"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3tlee"]
 
-[node name="HouseMonster" type="CharacterBody3D" groups=["enemy"]]
+[node name="HouseMonster" type="CharacterBody3D"]
+transform = Transform3D(0.400391, 0, 0, 0, 0.230966, 0, 0, 0, 0.480807, 0, 0, 0)
 script = ExtResource("1_ssnib")
+
+[node name="model_walk" parent="." instance=ExtResource("2_3tlee")]
+
+[node name="model_walk2" parent="." instance=ExtResource("2_8hgle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.59315, 0, 38.4395, 0)
+visible = false
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -15,10 +22,3 @@ script = ExtResource("1_ssnib")
 transform = Transform3D(44.7288, 0, 0, 0, 36.698, 0, 0, 0, 45.9338, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_3tlee")
 debug_color = Color(0.698407, 0.441892, 0.587143, 0.42)
-
-[node name="model_walk2" parent="." instance=ExtResource("2_8hgle")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 23.7793, 0)
-visible = false
-
-[node name="model_walk" parent="." instance=ExtResource("3_3tlee")]
-transform = Transform3D(0.999999, 0, -0.00134397, 0, 1, 0, 0.00134397, 0, 0.999999, 0, 22.9461, 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ia4ouu4k3uqs"]
+[gd_scene load_steps=18 format=3 uid="uid://ia4ouu4k3uqs"]
 
 [ext_resource type="Script" uid="uid://blqrjo76nxlwp" path="res://levels/main_level.gd" id="1_vx07q"]
 [ext_resource type="Script" uid="uid://b3u8w1ba8beq4" path="res://ChapterManager.gd" id="2_e7con"]
@@ -14,45 +14,25 @@
 [ext_resource type="AudioStream" uid="uid://d3im5fd4625wj" path="res://heartbeat-01-brvhrtz-225058.mp3" id="16_vy62f"]
 [ext_resource type="Script" uid="uid://bn818r2udrwdk" path="res://levels/video_stream_player.gd" id="17_vy62f"]
 [ext_resource type="AudioStream" uid="uid://byvlrupcf10tw" path="res://DemoPlayer/mixkit-angry-dragon-growl-309.wav" id="21_gdgmy"]
-[ext_resource type="PackedScene" uid="uid://cb6dp2chwrtr3" path="res://model_walk.tscn" id="24_n00sm"]
 [ext_resource type="PackedScene" uid="uid://bd5bcum8ag82o" path="res://bigmuseumcol.tscn" id="24_ss25c"]
-[ext_resource type="PackedScene" uid="uid://dqwa1ef6g3xfk" path="res://house_monster.tscn" id="25_ss25c"]
+[ext_resource type="PackedScene" uid="uid://cvw733ummayth" path="res://house_monster.tscn" id="25_ss25c"]
 
-[sub_resource type="Environment" id="Environment_vx07q"]
-background_mode = 1
-background_color = Color(0.800491, 0.800491, 0.800491, 1)
-background_energy_multiplier = 4.65
-ambient_light_source = 3
-ambient_light_color = Color(0.0383972, 0.0383972, 0.0383972, 1)
-ambient_light_energy = 8.89
-tonemap_mode = 3
-tonemap_exposure = 2.19
-tonemap_white = 9.5
+[sub_resource type="Environment" id="Environment_bv0m5"]
 glow_enabled = true
-glow_intensity = 3.28
-glow_bloom = 0.11
-glow_hdr_threshold = 0.75
-glow_hdr_scale = 1.28
-glow_hdr_luminance_cap = 39.65
+glow_intensity = 0.84
+glow_bloom = 0.33
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
-fog_sun_scatter = 0.38
-fog_density = 0.065
 
 [node name="DemoLevel" type="Node3D"]
 script = ExtResource("1_vx07q")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bv0m5")
+
 [node name="ChapterManager" type="Node" parent="."]
 script = ExtResource("2_e7con")
 metadata/_custom_type_script = "uid://b3u8w1ba8beq4"
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 12.8824, 0)
-shadow_enabled = true
-sky_mode = 2
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_vx07q")
 
 [node name="DemoPlayer" parent="." groups=["player"] instance=ExtResource("8_4gt88")]
 transform = Transform3D(0.656942, 0, 0, 0, 0.814077, 0, 0, 0, 0.56224, 0.869045, -2.74925, -18.1541)
@@ -74,6 +54,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9839, 0.611335, 60.4437)
 
 [node name="Power Cell4" parent="Items" instance=ExtResource("4_57428")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.5797, -0.063809, -14.6186)
+collision_layer = 9
 
 [node name="Power Cell5" parent="Items" instance=ExtResource("4_57428")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.8018, 1.16344, 34.3741)
@@ -126,12 +107,8 @@ autoplay = true
 transform = Transform3D(2.04677, 0, 0, 0, 1, 0, 0, 0, 3.80214, 45.798, 20.9833, 420.286)
 visible = false
 
-[node name="model_walk" parent="." instance=ExtResource("24_n00sm")]
-transform = Transform3D(0.00630981, 0, -0.021757, 0, 0.0226585, 0, 0.0291594, 0, 0.00470801, 5.01919, 0.15155, 3.72528)
-visible = false
-
 [node name="HouseMonster" parent="." instance=ExtResource("25_ss25c")]
-transform = Transform3D(0.143205, 0, 0, 0, 0.164369, 0, 0, 0, 0.146915, 46.6995, -2.19567, -19.4433)
+transform = Transform3D(0.0207184, 0, 0, 0, 0.0257714, 0, 0, 0, 0.0250817, 47.5593, -2.40787, -21.4219)
 
 [node name="HouseMonster2" parent="." instance=ExtResource("25_ss25c")]
 transform = Transform3D(0.0227412, 0, 0, 0, 0.0261021, 0, 0, 0, 0.0233304, 32.256, 6.39275, -125.392)
