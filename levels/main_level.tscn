@@ -36,13 +36,13 @@ script = ExtResource("2_e7con")
 metadata/_custom_type_script = "uid://b3u8w1ba8beq4"
 
 [node name="DemoPlayer" parent="." groups=["player"] instance=ExtResource("8_4gt88")]
-transform = Transform3D(0.656942, 0, 0, 0, 0.814077, 0, 0, 0, 0.56224, 0.869045, -2.74925, -18.1541)
+transform = Transform3D(0.656942, 0, 0, 0, 0.814077, 0, 0, 0, 0.56224, 0.869045, -2.74925, -17.9708)
 visible = false
 
 [node name="Items" type="Node3D" parent="."]
 
 [node name="key" parent="Items" instance=ExtResource("3_yr0xy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83513, 0, 2.30264)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83513, -0.245674, -24.2256)
 
 [node name="Power Cell" parent="Items" instance=ExtResource("4_57428")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.91511, -3.57836, -42.8767)
