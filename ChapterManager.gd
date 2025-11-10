@@ -69,12 +69,17 @@ var _subtitle_label: Label
 var _voice_player: AudioStreamPlayer
 var _transition_running := false
 
+var _skip_btn: Button
+var _skip_requested := false
+
+
 func _ready():
 	#await get_tree().create_timer(1.0).timeout
 	_build_ui_once()
 	_prepare_and_play_video(0)
 	await get_tree().create_timer(1.0).timeout
 	play_first_two_chapter_images()
+	_video.stop()
 
 
 
@@ -197,10 +202,20 @@ func _prepare_and_play_video(ch_idx: int) -> bool:
 	return true
 
 func _wait_for_video_end() -> void:
-	if _video.stream and _video.stream.get_length() > 0:
-		await get_tree().create_timer(_video.stream.get_length()).timeout
-	else:
-		await get_tree().create_timer(6.0).timeout
+	# Skip instantly if player presses Interact
+	while true:
+		# video finished normally
+		if not _video.playing:
+			break
+		
+		# player skips
+		if Input.is_action_just_pressed("skip"):
+			_video.stop()
+			break
+		
+		await get_tree().process_frame
+
+		
 func _play_in_game_monologue(ch_idx: int) -> void:
 	if ch_idx >= chapter_dialogs.size() or ch_idx >= chapter_durations.size():
 		return

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ia4ouu4k3uqs"]
+[gd_scene load_steps=18 format=3 uid="uid://ia4ouu4k3uqs"]
 
 [ext_resource type="Script" uid="uid://blqrjo76nxlwp" path="res://levels/main_level.gd" id="1_vx07q"]
 [ext_resource type="Script" uid="uid://b3u8w1ba8beq4" path="res://ChapterManager.gd" id="2_e7con"]
@@ -10,7 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://cxdnp58nqulkc" path="res://Interaction/Ladder/horror-background-atmosphere-156462.mp3" id="13_p6yen"]
 [ext_resource type="AudioStream" uid="uid://c5erse0fndj35" path="res://DemoPlayer/mixkit-terror-radio-frequency-2566.wav" id="14_n00sm"]
 [ext_resource type="AudioStream" uid="uid://bg4wf0knnrqj0" path="res://DemoPlayer/breathing-160445.mp3" id="15_bv0m5"]
-[ext_resource type="PackedScene" uid="uid://c52grvp5s1nhh" path="res://collhouse.tscn" id="16_bv0m5"]
 [ext_resource type="AudioStream" uid="uid://d3im5fd4625wj" path="res://heartbeat-01-brvhrtz-225058.mp3" id="16_vy62f"]
 [ext_resource type="PackedScene" uid="uid://lv5ah8lvreft" path="res://Interaction/Furniture/Drawer.tscn" id="17_bdauj"]
 [ext_resource type="Script" uid="uid://bn818r2udrwdk" path="res://levels/video_stream_player.gd" id="17_vy62f"]
@@ -19,11 +18,12 @@
 [ext_resource type="PackedScene" uid="uid://cvw733ummayth" path="res://house_monster.tscn" id="25_ss25c"]
 
 [sub_resource type="Environment" id="Environment_bv0m5"]
-glow_enabled = true
 glow_intensity = 0.84
 glow_bloom = 0.33
 fog_enabled = true
 fog_light_color = Color(0, 0, 0, 1)
+fog_light_energy = 13.47
+fog_density = 0.2746
 
 [node name="DemoLevel" type="Node3D"]
 script = ExtResource("1_vx07q")
@@ -37,7 +37,6 @@ metadata/_custom_type_script = "uid://b3u8w1ba8beq4"
 
 [node name="DemoPlayer" parent="." groups=["player"] instance=ExtResource("8_4gt88")]
 transform = Transform3D(0.656942, 0, 0, 0, 0.814077, 0, 0, 0, 0.56224, 0.869045, -2.74925, -17.9708)
-visible = false
 
 [node name="Items" type="Node3D" parent="."]
 
@@ -104,10 +103,6 @@ stream = ExtResource("14_n00sm")
 volume_db = -20.148
 autoplay = true
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("16_bv0m5")]
-transform = Transform3D(2.04677, 0, 0, 0, 1, 0, 0, 0, 3.80214, 45.798, 20.9833, 420.286)
-visible = false
-
 [node name="HouseMonster" parent="." instance=ExtResource("25_ss25c")]
 transform = Transform3D(0.0207184, 0, 0, 0, 0.0257714, 0, 0, 0, 0.0250817, 47.5593, -2.40787, -21.4219)
 
@@ -140,8 +135,16 @@ volume_db = -80.0
 script = ExtResource("17_vy62f")
 
 [node name="DragInteraction" parent="." instance=ExtResource("17_bdauj")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0179087, -3.36954, -25.7042)
-visible = false
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.67523, -3.33413, -24.1288)
+
+[node name="DragInteraction2" parent="." instance=ExtResource("17_bdauj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.75156, -3.33413, -25.7255)
+
+[node name="DragInteraction3" parent="." instance=ExtResource("17_bdauj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.90459, -3.33413, -25.7255)
+
+[node name="DragInteraction4" parent="." instance=ExtResource("17_bdauj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -1.38313, -3.33413, -24.2658)
 
 [node name="CollectibleItem" parent="." instance=ExtResource("3_yr0xy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.930633, -2.77378, -18.1541)
