@@ -1,95 +1,336 @@
-# Godot Horror Game Inventory and Interaction System
+✅ SHADOWS GAME — Official Demo (OGK Gaming × D.D. Tucker)
 
-## Overview
+A Godot horror demo inspired by the novel Shadows Game: The War With Julian (Book 1) by D.D. Tucker.
 
-Welcome to the repository for the Inventory and Interaction System, a comprehensive solution designed for horror games developed in Godot. This system allows players to collect items, interact with the environment, and craft new items, enhancing the immersive experience of your game.
+This project is the official early game demo being developed in collaboration with the author, D.D. Tucker, as a playable adaptation of his book.
 
-## Features
+The goal is to capture the psychological horror, paranoia, memory distortion, and presence-in-the-dark themes central to the novel.
 
-- **Inventory Management**: Players can collect and manage a variety of items within their inventory.
-- **Item Interaction**: Items can be used or selected to interact with other elements in the game world.
-- **Crafting System**: Players can craft new items by combining collected items according to specific recipes.
-- **Interactive Environment**: The system includes interactive doors and drawers that can be locked/unlocked and opened/closed by dragging with the mouse.
-- **Camcorder with Night Vision**: A camcorder equipped with night vision that players can use and recharge, adding a layer of depth to gameplay.
+Author website:
+https://booksbydttucker.com
 
-## Installation
+Book page:
+https://booksbydttucker.com/books/shadows-game-the-war-with-julian-book-1
 
-1. Clone the repository or download the project from the GitHub page.
-2. Open the project in Godot.
-3. (Optional) Follow the integration instructions provided in the video tutorial to add the system to your game.
+🎮 About This Demo
 
-## Adding New Items and Crafting Recipes
+This is an early prototype, built to test:
 
-1. To add new items, create a new item scene or prefab and define its properties.
-2. To add crafting recipes, update the crafting system script with the new item combinations and their results.
+The tone & atmosphere of the Shadows Game universe
 
-## New Item Instructions
+Player systems (movement, interaction, collecting)
 
-#### Create a New Scene
+Environmental storytelling
 
-- Create a new scene file (e.g., `MyCollectibleItem.tscn`) inherited from `Interaction/Items/CollectibleItem.tscn`.
+Camcorder + power cell survival mechanics
 
-#### Add Mesh and Collision Shape
+Heartbeat tension system
 
-1. Attach a mesh to visually represent your collectible item.
-2. Add a collision shape to ensure proper interaction with other objects.
+Cutscene + chapter transitions
 
-#### Script for Collectible Item
+A “floating house in space” and “museum hallway” as testbeds
 
-1. Attach a script (e.g., `MyCollectibleItem.gd`) to your collectible item.
-2. Extend `Interaction/Items/CollectibleItem.gd`.
-3. (Optional) Implement the `on_collect` function within your script:
+Scares, pacing, and moment-to-moment gameplay
 
-```gdscript
-func on_collect(): # Custom logic for power cell collection
-   Inventory.update_power_cells.emit()
-```
+This demo does not follow the full book story yet.
+It is a Proof of Feeling — testing the FEEL of the world first.
 
-This `on_collect` function will be called just after the signal to add the item to the inventory be emitted and before the item be removed with `queue_free()`, so if you want to change this behavior you need to override the `interact(parameters=null)` function.
+🧩 Core Systems — Based on What We Built in Chat
+✔️ First-Person Player Controller
 
-#### Enable the “Use” Button
+From our Godot sessions:
 
-1. Define a static function called use_item in your script:
+Smoothed head motion
 
-```gdscript
-static func use_item(): # Custom logic for using the power cell
-   Inventory.player.get_node("Head/Camcorder").try_to_recharge()
-```
+Camera bob
 
-Here is the full source code to create a collectible and usable power cell:
+Breathing SFX
 
-```gdscript
-extends "res://Interaction/Items/CollectibleItem.gd"
+Footstep system
 
-func on_collect():
-    #Updates the power cells quantity label in the camcorder
-    Inventory.update_power_cells.emit()
+Crouch + movement slowdown
 
-static func use_item():
-    #Recharges the camcorder
-    Inventory.player.get_node("Head/Camcorder").try_to_recharge()
+Player interacts via raycast
 
-```
+Player sends events to GameEnhancer and ChapterManager
 
-## Showcase
+✔️ Camcorder System
 
-- The project includes a demonstration of the inventory and interaction system in action.
-- Watch the video tutorial to see how the system works and how to integrate it into your game.
+Designed across multiple chats:
 
-## Contributing
+Toggle to turn on
 
-Contributions are welcome! If you have any improvements or bug fixes, please feel free to fork the repository and submit a pull request.
+Night vision effect
 
-## License
+Battery drain
 
-This project is released under the MIT License. See the LICENSE file for more details.
+Power cell recharge mechanic moved entirely into GameEnhancer
 
-## Acknowledgments
+Power Cells are collectible items
 
-- A special thanks to all the testers and contributors who have helped refine this system.
+When used, they call GameEnhancer.recharge_camcorder()
 
-## Contact
+HUD indicator for battery
 
-If you have any questions or would like to contribute to the project, please open an issue in the repository or contact me directly.
+✔️ Heartbeat System
 
-Thank you for exploring the Inventory and Interaction System for your Godot horror game. Happy developing!
+We planned & implemented the foundation:
+
+Looping heartbeat sound
+
+Speed/frequency changes based on:
+
+Darkness
+
+Proximity to events
+
+Story beats
+
+Controlled through GameEnhancer so it’s not scatter-coded
+
+✔️ Inventory Framework
+
+Collectibles (Power Cells, keys, story objects)
+
+Simple UI panel
+
+Items have:
+
+name
+
+icon
+
+description
+
+script callback on use
+
+Inventory integrates with camcorder + story triggers
+
+✔️ Interaction System
+
+We structured:
+
+Doors
+
+Drawers
+
+Buttons
+
+Pickup items
+
+Triggers for jumpscares
+
+World messages
+
+All using a consistent interface so adding new interactables is easy.
+
+✔️ Chapter / Cutscene System
+
+Built after your cutscene discussions:
+
+Plays intro video (“You wake up and your house is floating in deep space…”)
+
+Black screen text cards
+
+Timed transitions
+
+Video playback + audio mixing
+
+Ability to trigger chapters from map triggers
+
+Clean handoff to next scene
+
+Crash-proof/simple by design
+
+✔️ Game Enhancer
+
+This is your “central brain” for:
+
+Heartbeat
+
+Breathing
+
+Camera bob
+
+Camcorder logic
+
+Power-cell recharge
+
+Global effect switches
+
+Future:
+
+screen grain
+
+stamina
+
+fear meter
+
+We talked countless times about moving logic OUT of other scripts and INTO GameEnhancer — this README finally reflects that architecture.
+
+✔️ Environments
+
+Based on your repo and chats:
+
+1. Floating House (collhouse.tscn)
+
+Prototype environment
+
+Base demo area
+
+First scares introduced here
+
+2. Museum Hallway (bigmuseumcol.tscn)
+
+Environmental contrast
+
+Good for Chapter 2 testing
+
+3. Monster / Shadow Entity (house_monster.tscn)
+
+Early placeholder enemy
+
+Used to test proximity fear + heartbeat effects
+
+📁 Project Structure
+
+Matches your repo AND your design choices:
+
+/DemoPlayer
+    player.tscn
+    player.gd
+    camera + breathing + footsteps
+
+/Interaction
+    door.tscn
+    door.gd
+    triggers
+    pickups
+    events
+
+/Inventory
+    inventory_ui.tscn
+    item_base.gd
+    collectible_item.gd
+    item_database.gd
+    power_cell.gd
+
+levels/
+    collhouse.tscn
+    bigmuseumcol.tscn
+
+cutscenes/
+    intro.ogv
+    video_intro.tscn
+
+scripts/
+    GameEnhancer.gd
+    ChapterManager.gd
+    canvas_layer.gd
+    game_over.gd
+
+▶️ How to Play
+Install
+
+Clone:
+
+git clone https://github.com/OGKGaming/spacehouse
+
+
+Open in Godot 4.x
+
+Set collhouse.tscn as Main Scene
+
+Press F5
+
+⌨️ Controls
+
+(You can update if needed.)
+
+WASD – Move
+
+Mouse – Look
+
+E – Interact
+
+Tab – Inventory
+
+Right-Click – Toggle Camcorder
+
+Shift – Run
+
+Ctrl/C – Crouch
+
+Esc – Pause
+
+🛠️ Development Roadmap
+Phase 1 — Prototype Systems ✔️
+
+Player, camera bob, footsteps
+
+Inventory + power cells
+
+Camcorder + night vision
+
+Heartbeat system
+
+Intro cutscene
+
+House + museum
+
+Monster placeholder
+
+Basic scares
+
+Game Enhancer backend
+
+Chapter Manager framework
+
+Phase 2 — Book-Aligned Demo
+
+Scenes inspired by early chapters
+
+First appearance of Julian’s threat
+
+Memory distortion events
+
+Shadow presence encounters
+
+Real dialogue / voiceover
+
+First major chase or confrontation
+
+Phase 3 — Full Playable Demo
+
+20–30 min storyline
+
+Cinematic storytelling
+
+High-polish environments
+
+Official itch.io release
+
+📚 Credits
+
+Story & World:
+Shadows Game – The War With Julian (Book 1)
+By D.D. Tucker
+https://booksbydttucker.com
+
+Game Development:
+OGK Gaming
+
+Engine:
+Godot 4
+
+Music / SFX:
+Mix of custom + licensed + placeholders
+(List will be expanded for release.)
+
+📄 License
+
+Code: MIT License
+
+Book Lore, Characters, Narrative Elements:
+Copyright © D.D. Tucker
+Used with permission for this demo project
